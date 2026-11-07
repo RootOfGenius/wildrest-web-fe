@@ -9,12 +9,16 @@ with sync_playwright() as p:
     browser = p.chromium.launch(channel='chrome', headless=True)
     page = browser.new_page()
     errors = []
+    missing = []
     page.on('pageerror', lambda error: errors.append(str(error)))
+    page.on('response', lambda response: missing.append(response.url) if response.status == 404 and response.url.startswith('http://localhost:8080') else None)
     for width in [360, 390, 768, 1024, 1440]:
         page.set_viewport_size({'width': width, 'height': 900})
         page.goto('http://localhost:8080', wait_until='networkidle')
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), width
-        assert page.locator('#hero-title').inner_text() == 'Sắp ra mắt'
+        assert page.locator('#hero-title img').get_attribute('alt') == 'WildRest.vn — Server Minecraft sinh tồn Việt Nam'
+        assert page.locator('#launch-status').text_content() == 'Sắp ra mắt'
+        assert page.locator('#hero-ip').get_attribute('href') == '#tinh-nang'
         assert page.locator('#countdown').is_hidden()
         assert page.locator('[data-copy]:visible').count() == 0
         assert page.locator('[data-ip="java"]').inner_text() == 'Sẽ công bố khi mở cửa'
@@ -44,7 +48,8 @@ with sync_playwright() as p:
             page.locator('[data-copy="port"]').click()
             assert page.locator('#toast strong').inner_text() == 'Đã copy!'
         elif mode == 'past':
-            assert page.locator('#hero-title').inner_text() == 'Đã mở cửa! Vào chơi ngay'
+            assert page.locator('#launch-status').text_content() == 'Đã mở cửa! Vào chơi ngay'
+            assert page.locator('#hero-title img').count() == 1
         else:
             assert page.locator('#countdown').is_hidden()
         page.unroute('**/script.js')
@@ -58,8 +63,32 @@ with sync_playwright() as p:
     assert size < 1500000
     page.set_viewport_size({'width': 390, 'height': 844})
     page.screenshot(path=str(OUT / 'mobile.png'), full_page=True)
+    for width in [390, 1440]:
+        page.set_viewport_size({'width': width, 'height': 1000})
+        for selector, name in [('.hero', 'hero'), ('.intro', 'intro'), ('.features', 'features'), ('.join-section', 'join'), ('.faq-section', 'faq'), ('.final-cta', 'cta')]:
+            page.locator(selector).screenshot(path=str(OUT / f'v2-{width}-{name}.png'), style='.header,.skip-link{visibility:hidden!important}')
+    import json
+    schema = json.loads(page.locator('script[type="application/ld+json"]').text_content())
+    assert len(schema['@graph']) == 4
+    assert len(schema['@graph'][-1]['mainEntity']) == page.locator('details').count()
+    for index, detail in enumerate(page.locator('details').all()):
+        assert schema['@graph'][-1]['mainEntity'][index]['name'] == detail.locator('summary').inner_text()
+    assert page.locator('meta[property="og:image"]').get_attribute('content').endswith('/og-v2.jpg')
+    assert page.locator('img.feature-icon').count() == 9
+    assert page.locator('[data-social]:visible').count() == 0
+    page.route('**/widget.json', lambda route: route.fulfill(json={'presence_count': 123}))
+    page.goto('http://localhost:8080', wait_until='networkidle')
+    assert page.locator('#discord-presence').is_visible()
+    assert '123' in page.locator('#discord-presence').inner_text()
+    page.unroute('**/widget.json')
+    page.route('**/widget.json', lambda route: route.fulfill(status=403, json={'message': 'disabled'}))
+    page.goto('http://localhost:8080', wait_until='networkidle')
+    assert page.locator('#discord-presence').is_hidden()
+    for resource in ['robots.txt', 'sitemap.xml']:
+        assert page.request.get('http://localhost:8080/' + resource).status == 200
     page.goto('http://localhost:8080/404.html')
     assert page.locator('a').get_attribute('href') == '/'
     assert not errors, errors
+    assert not missing, missing
     browser.close()
 print('PASS: 5 viewports, menu, FAQ, IP, clipboard + fallback, countdown, reduced motion, 404; no page errors.')

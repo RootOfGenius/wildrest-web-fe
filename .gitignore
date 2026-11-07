@@ -1,2 +1,5 @@
 __pycache__/
 .qa/
+*PROMPT*.md
+*prompt*.md
+/*.png

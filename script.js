@@ -5,7 +5,26 @@ const CAU_HINH = {
   HIEN_IP: false,
   NGAY_MO: null, // Ví dụ: '2026-12-20T19:00:00+07:00'
   DISCORD: "https://discord.wildrest.vn",
+  DISCORD_GUILD_ID: "1568170875491192842",
+  MANG_XA_HOI: { tiktok: "", facebook: "", youtube: "" },
 };
+
+// Chỉ tải nền đêm khi người xem sắp cuộn tới phần tính năng.
+const features = document.getElementById("tinh-nang");
+if ("IntersectionObserver" in window) {
+  const backgroundObserver = new IntersectionObserver(
+    (entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        features.classList.add("background-ready");
+        backgroundObserver.disconnect();
+      }
+    },
+    { rootMargin: "200px" },
+  );
+  backgroundObserver.observe(features);
+} else {
+  features.classList.add("background-ready");
+}
 
 document.querySelectorAll("[data-discord]").forEach((link) => {
   link.href = CAU_HINH.DISCORD;
@@ -121,7 +140,7 @@ if (CAU_HINH.NGAY_MO) {
     function tick() {
       const remaining = Math.max(0, Math.floor((target - Date.now()) / 1000));
       if (!remaining) {
-        document.getElementById("hero-title").textContent =
+        document.getElementById("launch-status").textContent =
           "Đã mở cửa! Vào chơi ngay";
         countdown.hidden = true;
         return false;
@@ -144,6 +163,42 @@ if (CAU_HINH.NGAY_MO) {
     }
   }
 }
+
+// Số người trực tuyến do Discord cung cấp; không ước lượng hoặc hiển thị khi lỗi.
+async function updateDiscordPresence() {
+  if (!/^\d+$/.test(CAU_HINH.DISCORD_GUILD_ID)) return;
+  try {
+    const response = await fetch(
+      `https://discord.com/api/guilds/${CAU_HINH.DISCORD_GUILD_ID}/widget.json`,
+      { signal: AbortSignal.timeout(6000) },
+    );
+    if (!response.ok) return;
+    const data = await response.json();
+    if (!Number.isInteger(data.presence_count) || data.presence_count < 0)
+      return;
+    const presence = document.getElementById("discord-presence");
+    presence.textContent = `${data.presence_count.toLocaleString("vi-VN")} người đang trực tuyến trên Discord`;
+    presence.hidden = false;
+  } catch {
+    /* Widget chưa bật hoặc lỗi mạng: giữ dòng thống kê ẩn. */
+  }
+}
+updateDiscordPresence();
+
+document.querySelectorAll("[data-social]").forEach((link) => {
+  const value = CAU_HINH.MANG_XA_HOI[link.dataset.social];
+  if (!value) return;
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "https:") return;
+    link.href = url.href;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.hidden = false;
+  } catch {
+    /* Bỏ qua liên kết chưa hợp lệ. */
+  }
+});
 
 const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
 if (!motion.matches && "IntersectionObserver" in window) {
