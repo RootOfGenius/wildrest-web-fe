@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f08a24" />
+    <title>WildRest.vn · Server Minecraft sinh tồn Việt · Sắp ra mắt</title>
+    <meta
+      name="description"
+      content="WildRest.vn — server Minecraft sinh tồn Việt hoá. Sống chậm, xây nhà, lái xe dạo cùng bạn bè. Java 1.21.11 và điện thoại Bedrock/PE. Sắp ra mắt!"
+    />
+    <link rel="canonical" href="https://wildrest.vn/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:url" content="https://wildrest.vn/" />
+    <meta property="og:title" content="WildRest.vn · Sắp ra mắt" />
+    <meta
+      property="og:description"
+      content="Sinh tồn chill · sống chậm, xây nhà, lái xe dạo. Một hành trình mới đang chờ bạn!"
+    />
+    <meta property="og:image" content="https://wildrest.vn/assets/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Logo đảo cỏ WildRest.vn và dòng chữ Sắp ra mắt"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WildRest.vn · Sắp ra mắt" />
+    <meta
+      name="twitter:description"
+      content="Sinh tồn chill · sống chậm, xây nhà, lái xe dạo."
+    />
+    <meta name="twitter:image" content="https://wildrest.vn/assets/og.jpg" />
+    <link rel="icon" href="assets/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#noi-dung">Đến nội dung chính</a>
+    <header class="header">
+      <a class="brand" href="#" aria-label="WildRest.vn — về đầu trang"
+        ><img
+          src="assets/apple-touch-icon.png"
+          width="42"
+          height="42"
+          alt=""
+        />WildRest<span>.vn</span></a
+      >
+      <button class="menu-toggle" aria-expanded="false" aria-controls="menu">
+        ☰ <span>Menu</span>
+      </button>
+      <nav id="menu" aria-label="Điều hướng chính">
+        <a href="#tinh-nang">Tính năng</a><a href="#cach-vao">Cách vào</a
+        ><a href="#hoi-dap">Hỏi đáp</a
+        ><a
+          class="button button-small"
+          data-discord
+          href="https://discord.wildrest.vn"
+          >Discord <span aria-hidden="true">↗</span></a
+        >
+      </nav>
+    </header>
+    <main id="noi-dung">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="sun" aria-hidden="true"></div>
+        <div class="cloud cloud-one" aria-hidden="true"></div>
+        <div class="cloud cloud-two" aria-hidden="true"></div>
+        <div class="cloud cloud-three" aria-hidden="true"></div>
+        <div class="sparks" aria-hidden="true"></div>
+        <div class="hero-content">
+          <span class="badge"
+            ><span aria-hidden="true">●</span> BETA · ĐANG THỬ NGHIỆM</span
+          >
+          <picture class="hero-logo"
+            ><source
+              type="image/webp"
+              srcset="assets/logo-520.webp 520w, assets/logo.webp 900w"
+              sizes="(max-width: 600px) 82vw, 400px" />
+            <img
+              src="assets/logo.png"
+              width="900"
+              height="900"
+              alt="WildRest.vn — đảo cỏ lơ lửng với lửa trại và đèn lồng"
+              fetchpriority="high"
+          /></picture>
+          <p class="eyebrow">MỘT CHỐN DỪNG CHÂN, MỘT HÀNH TRÌNH MỚI</p>
+          <h1 id="hero-title">Sắp ra mắt</h1>
+          <p class="slogan">Sinh tồn chill · sống chậm, xây nhà, lái xe dạo</p>
+          <div
+            id="countdown"
+            class="countdown"
+            hidden
+            aria-label="Thời gian đến ngày mở cửa"
+          ></div>
+          <div class="hero-actions">
+            <a class="button" data-discord href="https://discord.wildrest.vn"
+              ><span aria-hidden="true">✦</span> Tham gia Discord</a
+            ><a
+              class="button button-secondary"
+              id="hero-ip"
+              data-discord
+              href="https://discord.wildrest.vn"
+              >Nhận thông báo khi mở cửa</a
+            >
+          </div>
+          <p class="edition">
+            <span aria-hidden="true">▣</span> Java 1.21.11
+            <span class="edition-dot">·</span> Có cả trên điện thoại / PE
+          </p>
+        </div>
+        <a class="scroll-hint" href="#tinh-nang"
+          >Khám phá miền đất mới <span aria-hidden="true">↓</span></a
+        >
+        <div class="terrain" aria-hidden="true"><div class="grass"></div></div>
+      </section>
+      <aside class="beta-notice">
+        <span class="notice-icon" aria-hidden="true">⚑</span>
+        <p>
+          Máy chủ đang thử nghiệm: tìm ra lỗi và báo trên Discord để nhận
+          <strong>thưởng</strong> khi mở chính thức. Lúc mở chính thức sẽ
+          <strong>reset world và dữ liệu</strong>.
+        </p>
+        <span class="notice-tag">CÙNG NHAU XÂY DỰNG</span>
+      </aside>
+      <section
+        class="section features"
+        id="tinh-nang"
+        aria-labelledby="features-title"
+      >
+        <div class="section-heading reveal">
+          <p class="eyebrow">CHƠI THEO CÁCH CỦA BẠN</p>
+          <h2 id="features-title">Một thế giới, nhiều niềm vui.</h2>
+          <p>
+            Trồng một luống rau. Dựng một mái nhà. Rủ vài người bạn.<br />Ở
+            WildRest, mỗi ngày đều có điều để mong chờ.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">🌳</span
+            ><span class="slot-number" aria-hidden="true">01</span>
+            <h3>Sinh tồn Việt hoá</h3>
+            <p>
+              Miền đất sinh tồn vanilla rộng lớn, chờ bạn khám phá. Menu, vật
+              phẩm và nhiệm vụ đều bằng tiếng Việt.
+            </p>
+            <span class="card-label">THẾ GIỚI CỦA BẠN</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">☘</span
+            ><span class="slot-number" aria-hidden="true">02</span>
+            <h3>Vận May &amp; Năng Lực</h3>
+            <p>
+              Mỗi cấp kỹ năng tăng Vận May, thu hoạch, đào quặng và chặt gỗ rơi
+              thêm đồ. Xem chỉ số bằng <code>/nangluc</code>.
+            </p>
+            <span class="card-label">MỖI NGÀY MỘT CHÚT TIẾN BỘ</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">⚔️</span
+            ><span class="slot-number" aria-hidden="true">03</span>
+            <h3>Trang bị tự rèn</h3>
+            <p>
+              Đổi nông sản, đồ quái rơi và cá thành Tiên → Khối → Nén. Tự rèn
+              giáp, vũ khí nhiều bậc với kỹ năng riêng.
+            </p>
+            <span class="card-label">TỰ TAY LÀM NÊN HUYỀN THOẠI</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">⛏️</span
+            ><span class="slot-number" aria-hidden="true">04</span>
+            <h3>Nông cụ &amp; khoáng cụ</h3>
+            <p>
+              Cuốc chuyên từng loại cây, cúp khai khoáng và rìu tiều phu có bộ
+              đếm. Càng chăm chỉ, công cụ càng mạnh!
+            </p>
+            <span class="card-label">CHĂM LÀM, CHĂM VUI</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">🐉</span
+            ><span class="slot-number" aria-hidden="true">05</span>
+            <h3>Boss &amp; Rồng Ender</h3>
+            <p>
+              Hẹn hội bạn đánh boss Sukuna mỗi ngày. Gọi lại Rồng Ender, chinh
+              phục bộ giáp Ender huyền thoại.
+            </p>
+            <span class="card-label">SẴN SÀNG CHO THỬ THÁCH?</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">⚑</span
+            ><span class="slot-number" aria-hidden="true">06</span>
+            <h3>Bang hội</h3>
+            <p>
+              Lập bang, lên cấp, góp quỹ và kho chung. Cùng làm nhiệm vụ tuần,
+              kết liên minh; bang chiến sắp ra mắt!
+            </p>
+            <span class="card-label">CÓ ĐỒNG ĐỘI, CÓ TẤT CẢ</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">🏎️</span
+            ><span class="slot-number" aria-hidden="true">07</span>
+            <h3>Giải trí</h3>
+            <p>
+              Đua ngựa đặt cược, thử vận may xổ số, khám phá Battle Pass theo
+              mùa. Hay chỉ lái xe một vòng ngắm cảnh.
+            </p>
+            <span class="card-label">HÔM NAY CHILL MỘT CHÚT</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">📱</span
+            ><span class="slot-number" aria-hidden="true">08</span>
+            <h3>Chơi trên điện thoại</h3>
+            <p>
+              Minecraft PE / Bedrock cũng vào chơi cùng hội Java. Có resource
+              pack riêng cho cả hai bản, cứ chọn máy bạn thích.
+            </p>
+            <span class="card-label">ĐI ĐÂU CŨNG CÓ HỘI</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">🛡️</span
+            ><span class="slot-number" aria-hidden="true">09</span>
+            <h3>Chống hack</h3>
+            <p>
+              Chống gian lận nhiều lớp, cùng đội ngũ quản trị theo dõi. Để công
+              sức xây dựng của bạn luôn có ý nghĩa.
+            </p>
+            <span class="card-label">AN TÂM XÂY TỔ ẤM</span>
+          </article>
+        </div>
+      </section>
+      <section
+        class="section join-section"
+        id="cach-vao"
+        aria-labelledby="join-title"
+      >
+        <div class="section-heading reveal">
+          <p class="eyebrow">CHIẾC VÉ ĐẾN WILDREST</p>
+          <h2 id="join-title">Hẹn gặp bạn trong game!</h2>
+          <p>Máy tính hay điện thoại, luôn có một chỗ dành cho bạn.</p>
+        </div>
+        <div class="join-grid">
+          <article class="join-card reveal">
+            <div class="join-heading">
+              <span aria-hidden="true">▣</span>
+              <div>
+                <h3>Minecraft Java</h3>
+                <p>Dành cho máy tính</p>
+              </div>
+              <span class="version">1.21.11</span>
+            </div>
+            <ol>
+              <li>Mở Minecraft Java phiên bản <strong>1.21.11</strong>.</li>
+              <li>Chọn <strong>Chơi nhiều người → Thêm máy chủ</strong>.</li>
+              <li>Nhập địa chỉ bên dưới và bắt đầu hành trình.</li>
+            </ol>
+            <div class="ip-box">
+              <div>
+                <span>ĐỊA CHỈ MÁY CHỦ</span
+                ><strong data-ip="java">Sẽ công bố khi mở cửa</strong>
+              </div>
+              <button
+                class="copy-button"
+                data-copy="java"
+                hidden
+                aria-label="Sao chép địa chỉ Java"
+              >
+                Copy
+              </button>
+            </div>
+          </article>
+          <article class="join-card reveal">
+            <div class="join-heading">
+              <span aria-hidden="true">▯</span>
+              <div>
+                <h3>Minecraft Bedrock / PE</h3>
+                <p>Dành cho điện thoại và Bedrock</p>
+              </div>
+            </div>
+            <ol>
+              <li>Mở Minecraft PE / Bedrock <strong>bản mới nhất</strong>.</li>
+              <li>Chọn <strong>Chơi → Máy chủ → Thêm máy chủ</strong>.</li>
+              <li>Nhập địa chỉ và cổng, rồi cùng vào chơi nhé.</li>
+            </ol>
+            <div class="ip-box">
+              <div>
+                <span>ĐỊA CHỈ MÁY CHỦ</span
+                ><strong data-ip="bedrock">Sẽ công bố khi mở cửa</strong>
+              </div>
+              <button
+                class="copy-button"
+                data-copy="bedrock"
+                hidden
+                aria-label="Sao chép địa chỉ Bedrock"
+              >
+                Copy
+              </button>
+            </div>
+            <div class="port-row">
+              <span
+                >Cổng kết nối:
+                <strong id="bedrock-port">Sẽ công bố khi mở cửa</strong></span
+              ><button
+                class="copy-button"
+                data-copy="port"
+                hidden
+                aria-label="Sao chép cổng Bedrock"
+              >
+                Copy cổng
+              </button>
+            </div>
+          </article>
+        </div>
+        <p class="pack-note">
+          💡 Vào lần đầu sẽ được hỏi tải resource pack, hãy chọn
+          <strong>Đồng ý</strong> nhé!
+        </p>
+      </section>
+      <section
+        class="section faq-section"
+        id="hoi-dap"
+        aria-labelledby="faq-title"
+      >
+        <div class="section-heading reveal">
+          <p class="eyebrow">CÓ THỂ BẠN ĐANG TÒ MÒ</p>
+          <h2 id="faq-title">Một vài câu hỏi nhỏ.</h2>
+        </div>
+        <div class="faq-list reveal">
+          <details>
+            <summary>Server có miễn phí không?</summary>
+            <p>
+              Có, bạn có thể vào chơi miễn phí. Mang theo tinh thần vui vẻ và rủ
+              thêm bạn bè nhé!
+            </p>
+          </details>
+          <details>
+            <summary>Chơi bằng điện thoại được không?</summary>
+            <p>
+              Được! Dùng Minecraft PE / Bedrock để cùng chơi với mọi người trên
+              máy tính.
+            </p>
+          </details>
+          <details>
+            <summary>Cần Minecraft phiên bản nào?</summary>
+            <p>
+              Java 1.21.11; với Minecraft PE / Bedrock, hãy dùng bản mới nhất.
+            </p>
+          </details>
+          <details>
+            <summary>Bao giờ mở chính thức?</summary>
+            <p>
+              Ngày mở cửa đang được chuẩn bị. Theo dõi
+              <a data-discord href="https://discord.wildrest.vn"
+                >Discord WildRest</a
+              >
+              để nhận thông báo sớm nhất.
+            </p>
+          </details>
+          <details>
+            <summary>Dữ liệu bản thử nghiệm có giữ không?</summary>
+            <p>
+              Không, world và toàn bộ dữ liệu sẽ được reset khi mở chính thức.
+              Những bạn tìm ra lỗi và báo lỗi sẽ được thưởng khi mở cửa.
+            </p>
+          </details>
+          <details>
+            <summary>Báo lỗi ở đâu?</summary>
+            <p>
+              Gửi lỗi vào kênh báo lỗi trên
+              <a data-discord href="https://discord.wildrest.vn">Discord</a>.
+              Thêm ảnh và cách gặp lại lỗi để đội ngũ dễ kiểm tra nhé!
+            </p>
+          </details>
+        </div>
+      </section>
+      <section class="final-cta reveal">
+        <span class="campfire" aria-hidden="true">🔥</span>
+        <p class="eyebrow">LỬA TRẠI ĐÃ NHÓM. CHỈ CÒN THIẾU BẠN.</p>
+        <h2>Cùng chờ ngày mở cửa nhé!</h2>
+        <p>
+          Ghé Discord, làm quen hàng xóm tương lai<br />và cùng góp một viên
+          gạch cho WildRest.
+        </p>
+        <a class="button" data-discord href="https://discord.wildrest.vn"
+          >Tham gia Discord <span aria-hidden="true">↗</span></a
+        >
+      </section>
+    </main>
+    <footer>
+      <a class="brand" href="#">WildRest<span>.vn</span></a>
+      <p>
+        © <span id="year">2026</span> WildRest.vn · Không liên kết với
+        Mojang/Microsoft
+      </p>
+      <a data-discord href="https://discord.wildrest.vn">Discord ↗</a>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite">
+      <span aria-hidden="true">✦</span>
+      <div>
+        <strong>Đã copy!</strong><small>Sẵn sàng cho chuyến phiêu lưu.</small>
+      </div>
+    </div>
+  </body>
+</html>
