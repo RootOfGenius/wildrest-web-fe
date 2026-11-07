@@ -31,6 +31,13 @@ document.querySelectorAll("[data-discord]").forEach((link) => {
 });
 document.getElementById("year").textContent = new Date().getFullYear();
 
+const ownerAvatar = document.querySelector(".owner-avatar");
+function hideOwnerAvatar() {
+  ownerAvatar.hidden = true;
+}
+ownerAvatar.addEventListener("error", hideOwnerAvatar);
+if (ownerAvatar.complete && ownerAvatar.naturalWidth === 0) hideOwnerAvatar();
+
 const menuButton = document.querySelector(".menu-toggle");
 const menu = document.getElementById("menu");
 function closeMenu() {

@@ -64,6 +64,12 @@
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "Person",
+            "name": "LouisHieuuu",
+            "jobTitle": "Founder & Owner",
+            "worksFor": { "@type": "Organization", "name": "WildRest.vn" }
+          },
+          {
             "@type": "WebSite",
             "name": "WildRest.vn",
             "url": "https://wildrest.vn/",
@@ -157,7 +163,7 @@
       </button>
       <nav aria-label="Điều hướng chính" id="menu">
         <a href="#tinh-nang">Tính năng</a><a href="#cach-vao">Cách vào</a
-        ><a href="#hoi-dap">Hỏi đáp</a
+        ><a href="#owner">Owner</a><a href="#hoi-dap">Hỏi đáp</a
         ><a
           class="button button-small"
           data-discord=""
@@ -510,6 +516,64 @@
           💡 Vào lần đầu sẽ được hỏi tải resource pack, hãy chọn
           <strong>Đồng ý</strong> nhé!
         </p>
+      </section>
+      <section
+        class="section owner-section"
+        id="owner"
+        aria-labelledby="owner-title"
+      >
+        <div class="owner-inner">
+          <div class="owner-art reveal">
+            <img
+              class="owner-character"
+              src="assets/owner.webp"
+              srcset="assets/owner-600.webp 600w, assets/owner.webp 1122w"
+              sizes="(max-width: 767px) min(320px, 86vw), 440px"
+              width="1122"
+              height="1402"
+              alt="LouisHieuuu — người sáng lập WildRest.vn"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="owner-copy reveal">
+            <p class="eyebrow">NGƯỜI GIỮ LỬA TRẠI</p>
+            <div class="owner-heading">
+              <img
+                class="owner-avatar"
+                src="https://mc-heads.net/avatar/LouisHieuuu/128"
+                width="64"
+                height="64"
+                alt="Ảnh đại diện Minecraft của LouisHieuuu"
+                loading="lazy"
+                decoding="async"
+              />
+              <div>
+                <h2 id="owner-title">LouisHieuuu</h2>
+                <span class="owner-badge">👑 Founder &amp; Owner</span>
+              </div>
+            </div>
+            <p class="owner-bio" lang="en">
+              <em
+                >🔥 Keeper of the campfire at WildRest.vn · Pull up a block and
+                stay a while 🪵</em
+              >
+            </p>
+            <p>
+              Mình dựng WildRest để có một nơi sinh tồn thật chill cho người
+              Việt: không vội, không áp lực, chỉ cần bạn bè và một đống lửa
+              trại. Gặp mình trên Discord nhé!
+            </p>
+            <a
+              class="button"
+              data-discord
+              href="https://discord.wildrest.vn"
+              target="_blank"
+              rel="noopener"
+              >Nhắn mình trên Discord <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
       </section>
       <section
         aria-labelledby="faq-title"

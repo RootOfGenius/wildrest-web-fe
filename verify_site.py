@@ -65,11 +65,17 @@ with sync_playwright() as p:
     page.screenshot(path=str(OUT / 'mobile.png'), full_page=True)
     for width in [390, 1440]:
         page.set_viewport_size({'width': width, 'height': 1000})
-        for selector, name in [('.hero', 'hero'), ('.intro', 'intro'), ('.features', 'features'), ('.join-section', 'join'), ('.faq-section', 'faq'), ('.final-cta', 'cta')]:
+        for selector, name in [('.hero', 'hero'), ('.intro', 'intro'), ('.features', 'features'), ('.join-section', 'join'), ('#owner', 'owner'), ('.faq-section', 'faq'), ('.final-cta', 'cta')]:
             page.locator(selector).screenshot(path=str(OUT / f'v2-{width}-{name}.png'), style='.header,.skip-link{visibility:hidden!important}')
     import json
     schema = json.loads(page.locator('script[type="application/ld+json"]').text_content())
-    assert len(schema['@graph']) == 4
+    assert len(schema['@graph']) == 5
+    assert next(item for item in schema['@graph'] if item['@type'] == 'Person')['name'] == 'LouisHieuuu'
+    assert page.locator('#owner-title').inner_text() == 'LouisHieuuu'
+    assert page.locator('#menu a[href="#owner"]').count() == 1
+    assert page.locator('#owner').evaluate('(e) => e.previousElementSibling.id') == 'cach-vao'
+    assert page.locator('#owner').evaluate('(e) => e.nextElementSibling.id') == 'hoi-dap'
+    assert page.locator('.owner-character').evaluate('(e) => getComputedStyle(e).animationName') == 'none'
     assert len(schema['@graph'][-1]['mainEntity']) == page.locator('details').count()
     for index, detail in enumerate(page.locator('details').all()):
         assert schema['@graph'][-1]['mainEntity'][index]['name'] == detail.locator('summary').inner_text()
@@ -84,6 +90,11 @@ with sync_playwright() as p:
     page.route('**/widget.json', lambda route: route.fulfill(status=403, json={'message': 'disabled'}))
     page.goto('http://localhost:8080', wait_until='networkidle')
     assert page.locator('#discord-presence').is_hidden()
+    page.route('https://mc-heads.net/**', lambda route: route.abort())
+    page.goto('http://localhost:8080', wait_until='networkidle')
+    page.locator('#owner').scroll_into_view_if_needed()
+    page.wait_for_function('document.querySelector(".owner-avatar").hidden')
+    assert page.request.get('http://localhost:8080/.well-known/discord').body() == b'dh=dd86fffe4e37f78146784d67dde8d157b343b378\n'
     for resource in ['robots.txt', 'sitemap.xml']:
         assert page.request.get('http://localhost:8080/' + resource).status == 200
     page.goto('http://localhost:8080/404.html')
