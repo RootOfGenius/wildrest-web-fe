@@ -1,5 +1,7 @@
 # WildRest.vn · Sắp ra mắt
 
+Repository public: [RootOfGenius/wildrest-web-fe](https://github.com/RootOfGenius/wildrest-web-fe). GitHub Pages phục vụ từ nhánh `main`, thư mục gốc, tên miền `wildrest.vn`.
+
 Website một trang bằng HTML, CSS và JavaScript thuần. Không framework, không npm và không cần build. Mọi ảnh và font được phục vụ tại chỗ; đường dẫn ra ngoài trên trang chỉ dẫn đến Discord.
 
 ## Chạy tại máy
@@ -44,7 +46,7 @@ Sau khi thêm custom domain vào GitHub Pages, thay các bản ghi A / URL Redir
 | A     | @   | 185.199.109.153                    |
 | A     | @   | 185.199.110.153                    |
 | A     | @   | 185.199.111.153                    |
-| CNAME | www | `<tên-tài-khoản-github>.github.io` |
+| CNAME | www | `rootofgenius.github.io` |
 
 Không thêm tên repo vào giá trị CNAME `www`. IPv6 tuỳ chọn: thêm bốn AAAA tại `@`: `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`.
 
