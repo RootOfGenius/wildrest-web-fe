@@ -1,3 +1,7 @@
+User-agent: facebookexternalhit
+Allow: /
+
 User-agent: *
 Allow: /
+
 Sitemap: https://wildrest.vn/sitemap.xml
