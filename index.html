@@ -7,7 +7,7 @@
     <meta content="#f08a24" name="theme-color" />
     <title>WildRest.vn · Server Minecraft sinh tồn Việt · Sắp ra mắt</title>
     <meta
-      content="Server Minecraft sinh tồn Việt Nam WildRest.vn: Java 1.21.11 và Minecraft PE/Bedrock, Việt hoá toàn bộ, bang hội, boss, trang bị tự rèn. Sắp ra mắt — tham gia Discord để nhận thông báo."
+      content="Server Minecraft sinh tồn Việt Nam WildRest.vn: Java 1.21.11 và Minecraft PE, Việt hoá toàn bộ, nông trại theo mùa, dungeon cướp biển, trang bị tự rèn, nội thất, xe hơi. Sắp ra mắt — tham gia Discord để nhận thông báo."
       name="description"
     />
     <link href="https://wildrest.vn/" rel="canonical" />
@@ -16,7 +16,7 @@
     <meta content="https://wildrest.vn/" property="og:url" />
     <meta content="WildRest.vn · Sắp ra mắt" property="og:title" />
     <meta
-      content="Server Minecraft sinh tồn Việt Nam WildRest.vn: Java 1.21.11 và Minecraft PE/Bedrock, Việt hoá toàn bộ, bang hội, boss, trang bị tự rèn. Sắp ra mắt — tham gia Discord để nhận thông báo."
+      content="Server Minecraft sinh tồn Việt Nam WildRest.vn: Java 1.21.11 và Minecraft PE, Việt hoá toàn bộ, nông trại theo mùa, dungeon cướp biển, trang bị tự rèn, nội thất, xe hơi. Sắp ra mắt — tham gia Discord để nhận thông báo."
       property="og:description"
     />
     <meta content="https://wildrest.vn/assets/og-v2.jpg" property="og:image" />
@@ -67,7 +67,10 @@
             "@type": "Person",
             "name": "LouisHieuuu",
             "jobTitle": "Founder & Owner",
-            "worksFor": { "@type": "Organization", "name": "WildRest.vn" }
+            "worksFor": {
+              "@type": "Organization",
+              "name": "WildRest.vn"
+            }
           },
           {
             "@type": "WebSite",
@@ -88,17 +91,42 @@
             "gamePlatform": ["PC", "Mobile"],
             "genre": "Survival",
             "inLanguage": "vi",
-            "url": "https://wildrest.vn/"
+            "url": "https://wildrest.vn/",
+            "image": "https://wildrest.vn/assets/gallery/anh-01.webp"
           },
           {
             "@type": "FAQPage",
             "mainEntity": [
               {
                 "@type": "Question",
+                "name": "Chơi PE và máy tính có dùng chung tài khoản được không?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Được. Trên Java gõ /linkaccount <tên PE> để lấy mã, rồi trên PE gõ /linkaccount <tên Java> <mã>. Đồ, tiền, rank, nhà sẽ dùng chung."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Mới vào nên làm gì?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Chọn một hướng cày (nông sản, đánh quái, câu cá), làm nông trại kiếm tiền, rồi đổi đồ ở dãy NPC cạnh sảnh. Gõ /menu để xem mọi tính năng."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Có cần cài gì không?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Lần đầu vào chọn “Đồng ý” tải resource pack (cả Java và PE). Không cần cài mod."
+                }
+              },
+              {
+                "@type": "Question",
                 "name": "Server có miễn phí không?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Có, bạn có thể vào chơi miễn phí. Mang theo tinh thần vui vẻ và rủ\n              thêm bạn bè nhé!"
+                  "text": "Có, bạn có thể vào chơi miễn phí. Mang theo tinh thần vui vẻ và rủ thêm bạn bè nhé!"
                 }
               },
               {
@@ -106,7 +134,7 @@
                 "name": "Chơi bằng điện thoại được không?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Được! Dùng Minecraft PE / Bedrock để cùng chơi với mọi người trên\n              máy tính."
+                  "text": "Được! Dùng Minecraft PE / Bedrock để cùng chơi với mọi người trên máy tính."
                 }
               },
               {
@@ -127,10 +155,10 @@
               },
               {
                 "@type": "Question",
-                "name": "Dữ liệu bản thử nghiệm có giữ không?",
+                "name": "Lúc mở chính thức có reset không?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Không, world và toàn bộ dữ liệu sẽ được reset khi mở chính thức.\n              Những bạn tìm ra lỗi và báo lỗi sẽ được thưởng khi mở cửa."
+                  "text": "Có. Bản thử nghiệm sẽ reset world và dữ liệu khi mở chính thức; người báo lỗi trong lúc thử nghiệm được thưởng."
                 }
               },
               {
@@ -138,7 +166,7 @@
                 "name": "Báo lỗi ở đâu?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Gửi lỗi vào kênh báo lỗi trên Discord .\n              Thêm ảnh và cách gặp lại lỗi để đội ngũ dễ kiểm tra nhé!"
+                  "text": "Gửi lỗi vào kênh báo lỗi trên Discord. Thêm ảnh và cách gặp lại lỗi để đội ngũ dễ kiểm tra nhé!"
                 }
               }
             ]
@@ -162,7 +190,8 @@
         ☰ <span>Menu</span>
       </button>
       <nav aria-label="Điều hướng chính" id="menu">
-        <a href="#tinh-nang">Tính năng</a><a href="#cach-vao">Cách vào</a
+        <a href="#tinh-nang">Tính năng</a><a href="#anh">Ảnh</a
+        ><a href="#cap-nhat">Có gì mới</a><a href="#cach-vao">Cách vào</a
         ><a href="#owner">Owner</a><a href="#hoi-dap">Hỏi đáp</a
         ><a
           class="button button-small"
@@ -252,8 +281,8 @@
           <p>
             WildRest.vn là server Minecraft Việt Nam dành cho những ai thích
             sinh tồn, xây dựng và chơi cùng bạn bè. Dù ở Java 1.21.11 hay
-            Minecraft PE / Bedrock, bạn đều có thể trồng trọt, lập bang và khám
-            phá miền đất mới theo nhịp riêng của mình.
+            Minecraft PE / Bedrock, bạn đều có thể chăm nông trại theo mùa, rủ
+            bạn đi dungeon, bày nội thất hoặc lái xe hơi dạo quanh miền đất mới.
           </p>
           <div class="intro-badges">
             <span>Java 1.21.11 &amp; PE</span><span>100% Việt hoá</span
@@ -277,157 +306,345 @@
         <div class="feature-grid">
           <article class="feature-card reveal">
             <img
-              alt=""
               class="feature-icon"
-              decoding="async"
+              src="assets/icons/sinh-ton.png"
+              alt=""
+              width="128"
               height="128"
               loading="lazy"
-              src="assets/icons/sinh-ton.png"
-              width="128"
-            /><span aria-hidden="true" class="slot-number">01</span>
+              decoding="async"
+            />
+            <span class="slot-number" aria-hidden="true">01</span>
             <h3>Sinh tồn Việt hoá</h3>
             <p>
-              Miền đất sinh tồn vanilla rộng lớn, chờ bạn khám phá. Menu, vật
-              phẩm và nhiệm vụ đều bằng tiếng Việt.
+              Miền đất sinh tồn rộng lớn với nhiều biome mới lạ chờ khám phá.
+              Menu, vật phẩm, nhiệm vụ đều bằng tiếng Việt.
             </p>
             <span class="card-label">THẾ GIỚI CỦA BẠN</span>
           </article>
           <article class="feature-card reveal">
             <img
-              alt=""
               class="feature-icon"
-              decoding="async"
+              src="assets/icons/nong-trai.png"
+              alt=""
+              width="128"
               height="128"
               loading="lazy"
-              src="assets/icons/van-may.png"
+              decoding="async"
+            />
+            <span class="slot-number" aria-hidden="true">02</span>
+            <h3>Nông trại theo mùa</h3>
+            <p>
+              10 loại cây từ cà chua, ngô, nho tới sầu riêng. Mỗi mùa một loại
+              lớn nhanh, trái mùa thì đứng yên. Bán nông sản hoặc giao đơn cho
+              Thương Lái để kiếm nhiều hơn.
+            </p>
+            <span class="card-label">CHĂM CÂY LÀ CÓ LỜI</span>
+          </article>
+          <article class="feature-card reveal">
+            <img
+              class="feature-icon"
+              src="assets/icons/trang-bi.png"
+              alt=""
               width="128"
-            /><span aria-hidden="true" class="slot-number">02</span>
+              height="128"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="slot-number" aria-hidden="true">03</span>
+            <h3>Trang bị tự rèn</h3>
+            <p>
+              Ba hướng cày mạnh ngang nhau: nông sản, đánh quái, câu cá. Đổi
+              thành Tiên → Khối → Nén để rèn bộ giáp và vũ khí 4 bậc.
+            </p>
+            <span class="card-label">TỰ TAY LÀM NÊN HUYỀN THOẠI</span>
+          </article>
+          <article class="feature-card reveal">
+            <img
+              class="feature-icon"
+              src="assets/icons/cuong-hoa.png"
+              alt=""
+              width="128"
+              height="128"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="slot-number" aria-hidden="true">04</span>
+            <h3>Cường hóa trang bị</h3>
+            <p>
+              Nâng giáp, vũ khí tới +12 bằng Đá Cường Hóa. Lên bậc vẫn giữ cấp
+              cường hóa và phù phép.
+            </p>
+            <span class="card-label">MẠNH LÊN TỪNG CẤP</span>
+          </article>
+          <article class="feature-card reveal">
+            <img
+              class="feature-icon"
+              src="assets/icons/dungeon.png"
+              alt=""
+              width="128"
+              height="128"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="slot-number" aria-hidden="true">05</span>
+            <h3>Dungeon Cướp Biển</h3>
+            <p>
+              4 khu, mỗi khu có boss riêng. Gom đủ 4 Mảnh Chìa để gọi trùm cuối
+              Rồng Linh Hồn Cổ Đại, săn bộ Cơ Giáp Pha Lê.
+            </p>
+            <span class="card-label">RỦ HỘI CÙNG ĐI</span>
+          </article>
+          <article class="feature-card reveal">
+            <img
+              class="feature-icon"
+              src="assets/icons/boss.png"
+              alt=""
+              width="128"
+              height="128"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="slot-number" aria-hidden="true">06</span>
+            <h3>Boss &amp; Rồng Ender</h3>
+            <p>
+              Boss Sukuna xuất hiện mỗi ngày, gọi lại Rồng Ender để rèn bộ giáp
+              Ender huyền thoại.
+            </p>
+            <span class="card-label">SẴN SÀNG CHO THỬ THÁCH?</span>
+          </article>
+          <article class="feature-card reveal">
+            <img
+              class="feature-icon"
+              src="assets/icons/nong-cu.png"
+              alt=""
+              width="128"
+              height="128"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="slot-number" aria-hidden="true">07</span>
+            <h3>Nông cụ, khoáng cụ &amp; cần câu</h3>
+            <p>
+              Cuốc từng loại cây, cúp khai khoáng, rìu tiều phu, cần câu nhiều
+              bậc. Càng dùng càng mạnh, Vận May càng cao.
+            </p>
+            <span class="card-label">CHĂM LÀM, CHĂM VUI</span>
+          </article>
+          <article class="feature-card reveal">
+            <img
+              class="feature-icon"
+              src="assets/icons/van-may.png"
+              alt=""
+              width="128"
+              height="128"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="slot-number" aria-hidden="true">08</span>
             <h3>Vận May &amp; Năng Lực</h3>
             <p>
-              Mỗi cấp kỹ năng tăng Vận May, thu hoạch, đào quặng và chặt gỗ rơi
+              Mỗi cấp kỹ năng tăng Vận May: thu hoạch, đào quặng, chặt gỗ rơi
               thêm đồ. Xem chỉ số bằng <code>/nangluc</code>.
             </p>
             <span class="card-label">MỖI NGÀY MỘT CHÚT TIẾN BỘ</span>
           </article>
           <article class="feature-card reveal">
             <img
-              alt=""
               class="feature-icon"
-              decoding="async"
+              src="assets/icons/noi-that.png"
+              alt=""
+              width="128"
               height="128"
               loading="lazy"
-              src="assets/icons/trang-bi.png"
-              width="128"
-            /><span aria-hidden="true" class="slot-number">03</span>
-            <h3>Trang bị tự rèn</h3>
+              decoding="async"
+            />
+            <span class="slot-number" aria-hidden="true">09</span>
+            <h3>Nội thất &amp; trang trí</h3>
             <p>
-              Đổi nông sản, đồ quái rơi và cá thành Tiên → Khối → Nén. Tự rèn
-              giáp, vũ khí nhiều bậc với kỹ năng riêng.
+              Hơn 140 món nội thất: sofa, bàn, kệ, đèn chùm, TV, bể cá… Ghế và
+              sofa ngồi được. Cùng mũ, cánh trang trí.
             </p>
-            <span class="card-label">TỰ TAY LÀM NÊN HUYỀN THOẠI</span>
+            <span class="card-label">NHÀ ĐẸP, LÒNG VUI</span>
           </article>
           <article class="feature-card reveal">
             <img
-              alt=""
               class="feature-icon"
-              decoding="async"
+              src="assets/icons/xe.png"
+              alt=""
+              width="128"
               height="128"
               loading="lazy"
-              src="assets/icons/nong-cu.png"
-              width="128"
-            /><span aria-hidden="true" class="slot-number">04</span>
-            <h3>Nông cụ &amp; khoáng cụ</h3>
+              decoding="async"
+            />
+            <span class="slot-number" aria-hidden="true">10</span>
+            <h3>Xe hơi lái dạo</h3>
             <p>
-              Cuốc chuyên từng loại cây, cúp khai khoáng và rìu tiều phu có bộ
-              đếm. Càng chăm chỉ, công cụ càng mạnh!
+              Mua xe, đổ xăng, gắn biển số, khoá xe, chia chìa khoá cho bạn bè.
+              Siêu xe trưng bày ngay sảnh chờ.
             </p>
-            <span class="card-label">CHĂM LÀM, CHĂM VUI</span>
+            <span class="card-label">HÔM NAY ĐI ĐÂU?</span>
           </article>
           <article class="feature-card reveal">
             <img
-              alt=""
               class="feature-icon"
-              decoding="async"
-              height="128"
-              loading="lazy"
-              src="assets/icons/boss.png"
-              width="128"
-            /><span aria-hidden="true" class="slot-number">05</span>
-            <h3>Boss &amp; Rồng Ender</h3>
-            <p>
-              Hẹn hội bạn đánh boss Sukuna mỗi ngày. Gọi lại Rồng Ender, chinh
-              phục bộ giáp Ender huyền thoại.
-            </p>
-            <span class="card-label">SẴN SÀNG CHO THỬ THÁCH?</span>
-          </article>
-          <article class="feature-card reveal">
-            <img
-              alt=""
-              class="feature-icon"
-              decoding="async"
-              height="128"
-              loading="lazy"
               src="assets/icons/bang-hoi.png"
+              alt=""
               width="128"
-            /><span aria-hidden="true" class="slot-number">06</span>
-            <h3>Bang hội</h3>
+              height="128"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="slot-number" aria-hidden="true">11</span>
+            <h3>Bang hội &amp; giải trí</h3>
             <p>
-              Lập bang, lên cấp, góp quỹ và kho chung. Cùng làm nhiệm vụ tuần,
-              kết liên minh; bang chiến sắp ra mắt!
+              Lập bang, quỹ chung, nhiệm vụ tuần, liên minh. Đua ngựa đặt cược,
+              xổ số, Battle Pass theo mùa.
             </p>
             <span class="card-label">CÓ ĐỒNG ĐỘI, CÓ TẤT CẢ</span>
           </article>
           <article class="feature-card reveal">
             <img
-              alt=""
               class="feature-icon"
-              decoding="async"
-              height="128"
-              loading="lazy"
-              src="assets/icons/giai-tri.png"
-              width="128"
-            /><span aria-hidden="true" class="slot-number">07</span>
-            <h3>Giải trí</h3>
-            <p>
-              Đua ngựa đặt cược, thử vận may xổ số, khám phá Battle Pass theo
-              mùa. Hay chỉ lái xe một vòng ngắm cảnh.
-            </p>
-            <span class="card-label">HÔM NAY CHILL MỘT CHÚT</span>
-          </article>
-          <article class="feature-card reveal">
-            <img
-              alt=""
-              class="feature-icon"
-              decoding="async"
-              height="128"
-              loading="lazy"
               src="assets/icons/dien-thoai.png"
+              alt=""
               width="128"
-            /><span aria-hidden="true" class="slot-number">08</span>
-            <h3>Chơi trên điện thoại</h3>
+              height="128"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="slot-number" aria-hidden="true">12</span>
+            <h3>Điện thoại &amp; máy tính chơi chung</h3>
             <p>
-              Minecraft PE / Bedrock cũng vào chơi cùng hội Java. Có resource
-              pack riêng cho cả hai bản, cứ chọn máy bạn thích.
+              Minecraft PE / Bedrock vào cùng hội Java. Liên kết tài khoản PE
+              với Java để dùng chung đồ, tiền, nhà.
             </p>
             <span class="card-label">ĐI ĐÂU CŨNG CÓ HỘI</span>
           </article>
-          <article class="feature-card reveal">
-            <img
-              alt=""
-              class="feature-icon"
-              decoding="async"
-              height="128"
-              loading="lazy"
-              src="assets/icons/chong-hack.png"
-              width="128"
-            /><span aria-hidden="true" class="slot-number">09</span>
-            <h3>Chống hack</h3>
-            <p>
-              Chống gian lận nhiều lớp, cùng đội ngũ quản trị theo dõi. Để công
-              sức xây dựng của bạn luôn có ý nghĩa.
-            </p>
-            <span class="card-label">AN TÂM XÂY TỔ ẤM</span>
+        </div>
+        <p class="fair-play">
+          <img
+            src="assets/icons/chong-hack.png"
+            alt=""
+            width="32"
+            height="32"
+            loading="lazy"
+            decoding="async"
+          />Chống gian lận nhiều lớp, đội ngũ quản trị theo dõi.
+        </p>
+      </section>
+      <section
+        class="section gallery-section"
+        id="anh"
+        aria-labelledby="gallery-title"
+      >
+        <div class="section-heading reveal">
+          <p class="eyebrow">NHÌN TẬN MẮT</p>
+          <h2 id="gallery-title">Một vòng quanh WildRest</h2>
+        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+        <template id="gallery-item">
+          <figure class="gallery-card">
+            <button type="button">
+              <img alt="" loading="lazy" decoding="async" />
+            </button>
+            <figcaption></figcaption>
+          </figure>
+        </template>
+        <noscript
+          ><p class="gallery-note">
+            <a href="assets/gallery/anh-01.webp">Mở ảnh phố WildRest</a>
+          </p></noscript
+        >
+        <dialog
+          class="gallery-lightbox"
+          id="gallery-lightbox"
+          aria-label="Ảnh trong game WildRest"
+        >
+          <div class="lightbox-panel">
+            <button
+              type="button"
+              class="lightbox-close"
+              data-close
+              autofocus
+              aria-label="Đóng ảnh"
+            >
+              ×
+            </button>
+            <figure>
+              <img alt="" decoding="async" draggable="false" />
+              <figcaption aria-live="polite"></figcaption>
+            </figure>
+            <div class="lightbox-controls">
+              <button type="button" data-prev aria-label="Ảnh trước">←</button>
+              <button type="button" data-next aria-label="Ảnh tiếp theo">
+                →
+              </button>
+            </div>
+          </div>
+        </dialog>
+      </section>
+      <section
+        class="section updates-section"
+        id="cap-nhat"
+        aria-labelledby="updates-title"
+      >
+        <div class="section-heading reveal">
+          <p class="eyebrow">CÓ GÌ MỚI</p>
+          <h2 id="updates-title">Server cập nhật liên tục</h2>
+        </div>
+        <div class="update-list" id="update-list">
+          <article class="update-card">
+            <time datetime="2026-11-09">09/11</time>
+            <div>
+              <h3>Dungeon &amp; bộ Cơ Giáp Pha Lê</h3>
+              <ul>
+                <li>Đánh trùm cuối Dungeon để săn Lõi Pha Lê.</li>
+                <li>
+                  Bộ Cơ Giáp Pha Lê có cánh sau lưng. Kiếm phóng bánh xe xoay và
+                  gọi rồng băng.
+                </li>
+                <li>Thêm dụng cụ bậc Pha Lê.</li>
+              </ul>
+            </div>
           </article>
+          <article class="update-card">
+            <time datetime="2026-11-09">09/11</time>
+            <div>
+              <h3>Nông trại theo mùa &amp; nội thất</h3>
+              <ul>
+                <li>
+                  Trồng 10 loại cây theo mùa và giao đơn hàng cho Thương Lái.
+                </li>
+                <li>
+                  Hơn 140 món nội thất để trang trí, có ghế và sofa ngồi được.
+                </li>
+              </ul>
+            </div>
+          </article>
+          <article class="update-card">
+            <time datetime="2026-11-09">09/11</time>
+            <div>
+              <h3>Câu cá &amp; cân bằng</h3>
+              <ul>
+                <li>Ghé Lão Ngư để khám phá cần câu 4 bậc.</li>
+                <li>
+                  Kiếm mọi bậc mạnh hơn. Dungeon xuất hiện nhiều quái hơn.
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+        <div class="updates-footer">
+          <p>Trong game gõ <code>/changelog</code> để xem lại.</p>
+          <a
+            class="button button-small"
+            data-discord
+            href="https://discord.wildrest.vn"
+            target="_blank"
+            rel="noopener"
+            >Xem đầy đủ trên Discord</a
+          >
         </div>
       </section>
       <section
@@ -586,6 +803,32 @@
         </div>
         <div class="faq-list reveal">
           <details>
+            <summary>
+              Chơi PE và máy tính có dùng chung tài khoản được không?
+            </summary>
+            <p>
+              Được. Trên Java gõ <code>/linkaccount &lt;tên PE&gt;</code> để lấy
+              mã, rồi trên PE gõ
+              <code>/linkaccount &lt;tên Java&gt; &lt;mã&gt;</code>. Đồ, tiền,
+              rank, nhà sẽ dùng chung.
+            </p>
+          </details>
+          <details>
+            <summary>Mới vào nên làm gì?</summary>
+            <p>
+              Chọn một hướng cày (nông sản, đánh quái, câu cá), làm nông trại
+              kiếm tiền, rồi đổi đồ ở dãy NPC cạnh sảnh. Gõ
+              <code>/menu</code> để xem mọi tính năng.
+            </p>
+          </details>
+          <details>
+            <summary>Có cần cài gì không?</summary>
+            <p>
+              Lần đầu vào chọn “Đồng ý” tải resource pack (cả Java và PE). Không
+              cần cài mod.
+            </p>
+          </details>
+          <details>
             <summary>Server có miễn phí không?</summary>
             <p>
               Có, bạn có thể vào chơi miễn phí. Mang theo tinh thần vui vẻ và rủ
@@ -620,10 +863,10 @@
             </p>
           </details>
           <details>
-            <summary>Dữ liệu bản thử nghiệm có giữ không?</summary>
+            <summary>Lúc mở chính thức có reset không?</summary>
             <p>
-              Không, world và toàn bộ dữ liệu sẽ được reset khi mở chính thức.
-              Những bạn tìm ra lỗi và báo lỗi sẽ được thưởng khi mở cửa.
+              Có. Bản thử nghiệm sẽ reset world và dữ liệu khi mở chính thức;
+              người báo lỗi trong lúc thử nghiệm được thưởng.
             </p>
           </details>
           <details>

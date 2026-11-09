@@ -9,6 +9,79 @@ const CAU_HINH = {
   MANG_XA_HOI: { tiktok: "", facebook: "", youtube: "" },
 };
 
+const ANH_MAY_CHU = [
+  {
+    src: "assets/gallery/anh-01.webp",
+    width: 1918,
+    height: 973,
+    alt: "Tháp đá nhìn từ con phố gỗ treo đèn lồng",
+    chuThich: "Dạo phố dưới chân tháp đá",
+  },
+  {
+    src: "assets/gallery/anh-02.webp",
+    width: 1792,
+    height: 883,
+    alt: "Người chơi đứng cạnh dãy siêu xe ngoài quảng trường",
+    chuThich: "Hẹn bạn bè lái xe quanh sảnh",
+  },
+  {
+    src: "assets/gallery/anh-03.webp",
+    width: 1667,
+    height: 889,
+    alt: "Người chơi mặc giáp có cánh đứng cạnh rồng băng trên đồng cỏ",
+    chuThich: "Bộ Cơ Giáp Pha Lê và rồng băng",
+  },
+  {
+    src: "assets/gallery/anh-04.webp",
+    width: 1799,
+    height: 971,
+    alt: "Dãy trưng bày trang bị cạnh boong tàu gỗ",
+    chuThich: "Ghé khu trưng bày trang bị",
+  },
+  {
+    src: "assets/gallery/anh-05.webp",
+    width: 1859,
+    height: 970,
+    alt: "Người chơi đeo cánh lấp lánh bay trên tán rừng",
+    chuThich: "Một đôi cánh giữa trời WildRest",
+  },
+  {
+    src: "assets/gallery/anh-06.webp",
+    width: 1918,
+    height: 979,
+    alt: "Người chơi đứng cạnh xe trắng đỗ bên hiên nhà",
+    chuThich: "Dừng xe trước hiên nhà",
+  },
+];
+
+const CAP_NHAT = [
+  {
+    ngay: "2026-11-09",
+    tieuDe: "Dungeon & bộ Cơ Giáp Pha Lê",
+    noiDung: [
+      "Đánh trùm cuối Dungeon để săn Lõi Pha Lê.",
+      "Bộ Cơ Giáp Pha Lê có cánh sau lưng. Kiếm phóng bánh xe xoay và gọi rồng băng.",
+      "Thêm dụng cụ bậc Pha Lê.",
+    ],
+  },
+  {
+    ngay: "2026-11-09",
+    tieuDe: "Nông trại theo mùa & nội thất",
+    noiDung: [
+      "Trồng 10 loại cây theo mùa và giao đơn hàng cho Thương Lái.",
+      "Hơn 140 món nội thất để trang trí, có ghế và sofa ngồi được.",
+    ],
+  },
+  {
+    ngay: "2026-11-09",
+    tieuDe: "Câu cá & cân bằng",
+    noiDung: [
+      "Ghé Lão Ngư để khám phá cần câu 4 bậc.",
+      "Kiếm mọi bậc mạnh hơn. Dungeon xuất hiện nhiều quái hơn.",
+    ],
+  },
+];
+
 // Chỉ tải nền đêm khi người xem sắp cuộn tới phần tính năng.
 const features = document.getElementById("tinh-nang");
 if ("IntersectionObserver" in window) {
@@ -30,6 +103,111 @@ document.querySelectorAll("[data-discord]").forEach((link) => {
   link.href = CAU_HINH.DISCORD;
 });
 document.getElementById("year").textContent = new Date().getFullYear();
+
+const timeline = document.querySelector("#update-list");
+if (CAP_NHAT.length) {
+  const template = timeline.firstElementChild;
+  timeline.replaceChildren(
+    ...CAP_NHAT.map(({ ngay, tieuDe, noiDung }) => {
+      const article = template.cloneNode(true);
+      const date = article.querySelector("time");
+      date.dateTime = ngay;
+      date.textContent = `${ngay.slice(8, 10)}/${ngay.slice(5, 7)}`;
+      article.querySelector("h3").textContent = tieuDe;
+      article.querySelector("ul").replaceChildren(
+        ...noiDung.map((line) => {
+          const item = document.createElement("li");
+          item.textContent = line;
+          return item;
+        }),
+      );
+      return article;
+    }),
+  );
+}
+
+const gallery = document.querySelector("#gallery-grid");
+const lightbox = document.querySelector("#gallery-lightbox");
+const lightboxImage = lightbox.querySelector("img");
+const lightboxCaption = lightbox.querySelector("figcaption");
+let currentPhoto = 0;
+let galleryTrigger;
+let swipeStart;
+
+function showPhoto(index) {
+  currentPhoto = (index + ANH_MAY_CHU.length) % ANH_MAY_CHU.length;
+  const photo = ANH_MAY_CHU[currentPhoto];
+  lightboxImage.alt = photo.alt;
+  lightboxImage.width = photo.width;
+  lightboxImage.height = photo.height;
+  lightboxImage.src = photo.src;
+  lightboxCaption.textContent = `${photo.chuThich} · ${currentPhoto + 1}/${ANH_MAY_CHU.length}`;
+}
+
+document.querySelector("#anh").hidden = !ANH_MAY_CHU.length;
+document.querySelector('#menu a[href="#anh"]').hidden = !ANH_MAY_CHU.length;
+const photoTemplate = document.querySelector("#gallery-item");
+ANH_MAY_CHU.forEach(({ src, alt, chuThich, width, height }, index) => {
+  const item = photoTemplate.content.cloneNode(true);
+  const button = item.querySelector("button");
+  const img = item.querySelector("img");
+  img.alt = alt;
+  img.width = width;
+  img.height = height;
+  img.sizes =
+    "(max-width: 639px) calc(100vw - 40px), (max-width: 1000px) calc((100vw - 68px) / 2), 374px";
+  if (width > 640) {
+    img.srcset = `${src.replace(/\.webp$/i, "-640.webp")} 640w, ${src} ${width}w`;
+  }
+  img.src = src;
+  button.setAttribute("aria-label", `Mở ảnh: ${alt}`);
+  item.querySelector("figcaption").textContent = chuThich;
+  button.addEventListener("click", () => {
+    galleryTrigger = button;
+    showPhoto(index);
+    lightbox.showModal();
+  });
+  gallery.append(item);
+});
+
+lightbox
+  .querySelector("[data-close]")
+  .addEventListener("click", () => lightbox.close());
+lightbox
+  .querySelector("[data-prev]")
+  .addEventListener("click", () => showPhoto(currentPhoto - 1));
+lightbox
+  .querySelector("[data-next]")
+  .addEventListener("click", () => showPhoto(currentPhoto + 1));
+lightbox.addEventListener("click", (event) => {
+  if (event.target === lightbox) lightbox.close();
+});
+lightbox.addEventListener("close", () => {
+  swipeStart = null;
+  lightboxImage.removeAttribute("src");
+  galleryTrigger.focus({ preventScroll: true });
+});
+lightbox.addEventListener("keydown", (event) => {
+  if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+  event.preventDefault();
+  showPhoto(currentPhoto + (event.key === "ArrowLeft" ? -1 : 1));
+});
+lightboxImage.addEventListener("pointerdown", (event) => {
+  if (event.pointerType !== "touch" || !event.isPrimary) return;
+  swipeStart = { x: event.clientX, y: event.clientY };
+  lightboxImage.setPointerCapture(event.pointerId);
+});
+lightboxImage.addEventListener("pointerup", (event) => {
+  if (!swipeStart || !event.isPrimary) return;
+  const dx = event.clientX - swipeStart.x;
+  const dy = event.clientY - swipeStart.y;
+  swipeStart = null;
+  if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy))
+    showPhoto(currentPhoto + (dx < 0 ? 1 : -1));
+});
+lightboxImage.addEventListener("pointercancel", () => {
+  swipeStart = null;
+});
 
 const ownerAvatar = document.querySelector(".owner-avatar");
 function hideOwnerAvatar() {

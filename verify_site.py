@@ -22,7 +22,7 @@ with sync_playwright() as p:
         assert page.locator('#countdown').is_hidden()
         assert page.locator('[data-copy]:visible').count() == 0
         assert page.locator('[data-ip="java"]').inner_text() == 'Sẽ công bố khi mở cửa'
-        if width < 640:
+        if width < 880:
             page.locator('.menu-toggle').click()
             assert page.locator('#menu').is_visible()
             page.keyboard.press('Escape')
@@ -65,8 +65,8 @@ with sync_playwright() as p:
     page.screenshot(path=str(OUT / 'mobile.png'), full_page=True)
     for width in [390, 1440]:
         page.set_viewport_size({'width': width, 'height': 1000})
-        for selector, name in [('.hero', 'hero'), ('.intro', 'intro'), ('.features', 'features'), ('.join-section', 'join'), ('#owner', 'owner'), ('.faq-section', 'faq'), ('.final-cta', 'cta')]:
-            page.locator(selector).screenshot(path=str(OUT / f'v2-{width}-{name}.png'), style='.header,.skip-link{visibility:hidden!important}')
+        for selector, name in [('#anh', 'gallery'), ('#cap-nhat', 'updates')]:
+            page.locator(selector).screenshot(path=str(OUT / f'v3-{width}-{name}.png'), style='.header,.skip-link{visibility:hidden!important}')
     import json
     schema = json.loads(page.locator('script[type="application/ld+json"]').text_content())
     assert len(schema['@graph']) == 5
@@ -78,9 +78,35 @@ with sync_playwright() as p:
     assert page.locator('.owner-character').evaluate('(e) => getComputedStyle(e).animationName') == 'none'
     assert len(schema['@graph'][-1]['mainEntity']) == page.locator('details').count()
     for index, detail in enumerate(page.locator('details').all()):
-        assert schema['@graph'][-1]['mainEntity'][index]['name'] == detail.locator('summary').inner_text()
+        question = schema['@graph'][-1]['mainEntity'][index]
+        assert question['name'] == detail.locator('summary').inner_text()
+        answer = ' '.join(detail.locator('p').text_content().split())
+        assert question['acceptedAnswer']['text'] == answer, (question, answer)
     assert page.locator('meta[property="og:image"]').get_attribute('content').endswith('/og-v2.jpg')
-    assert page.locator('img.feature-icon').count() == 9
+    assert page.locator('img.feature-icon').count() == 12
+    for icon in page.locator('img.feature-icon').all():
+        assert (ROOT / icon.get_attribute('src')).is_file()
+    photos = page.evaluate('ANH_MAY_CHU')
+    assert len(photos) == page.locator('#gallery-grid img').count()
+    for photo in photos:
+        original = ROOT / photo['src']
+        assert photo['alt'].strip()
+        assert original.is_file()
+        assert original.with_name(original.stem + '-640.webp').is_file()
+    assert page.locator('#update-list article').count() == len(page.evaluate('CAP_NHAT'))
+    page.set_viewport_size({'width': 390, 'height': 844})
+    first_photo = page.locator('#gallery-grid button').first
+    first_photo.press('Enter')
+    lightbox = page.locator('#gallery-lightbox')
+    assert lightbox.is_visible()
+    assert lightbox.locator('img').get_attribute('src') == photos[0]['src']
+    page.keyboard.press('ArrowRight')
+    assert lightbox.locator('img').get_attribute('src') == photos[1]['src']
+    page.keyboard.press('ArrowLeft')
+    assert lightbox.locator('img').get_attribute('src') == photos[0]['src']
+    page.keyboard.press('Escape')
+    assert lightbox.is_hidden()
+    assert first_photo.evaluate('(button) => button === document.activeElement')
     assert page.locator('[data-social]:visible').count() == 0
     page.route('**/widget.json', lambda route: route.fulfill(json={'presence_count': 123}))
     page.goto('http://localhost:8080', wait_until='networkidle')

@@ -1,13 +1,33 @@
-"""Chuẩn bị tài nguyên V2: python prepare_assets.py (cần Pillow).
+"""Chuẩn bị tài nguyên (cần Pillow).
 
 Ảnh nguồn được giữ cục bộ, chỉ các bản tối ưu trong assets được deploy.
 """
 from pathlib import Path
+import sys
 from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / 'assets'
 OUT.mkdir(exist_ok=True)
+
+def prepare_gallery():
+    for source in sorted((OUT / 'gallery').glob('anh-*.webp')):
+        if not source.stem.removeprefix('anh-').isdigit():
+            continue
+        thumbnail = source.with_name(f'{source.stem}-640.webp')
+        if thumbnail.exists() and thumbnail.stat().st_mtime >= source.stat().st_mtime:
+            continue
+        with Image.open(source) as image:
+            resized = image.convert('RGB')
+            if resized.width > 640:
+                height = max(1, round(640 * resized.height / resized.width))
+                resized = resized.resize((640, height), Image.Resampling.LANCZOS)
+            resized.save(thumbnail, quality=82, method=6)
+            print(f'{source.name}: {image.width}x{image.height} -> {thumbnail.name}')
+
+prepare_gallery()
+if '--gallery' in sys.argv:
+    sys.exit(0)
 
 def webp(source, name, width, limit):
     image = Image.open(ROOT / source).convert('RGB')
