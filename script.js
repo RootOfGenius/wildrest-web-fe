@@ -5,7 +5,6 @@ const CAU_HINH = {
   HIEN_IP: false,
   NGAY_MO: null, // Ví dụ: '2026-12-20T19:00:00+07:00'
   DISCORD: "https://discord.wildrest.vn",
-  DISCORD_GUILD_ID: "1568170875491192842",
   MANG_XA_HOI: { tiktok: "", facebook: "", youtube: "" },
 };
 
@@ -348,27 +347,6 @@ if (CAU_HINH.NGAY_MO) {
     }
   }
 }
-
-// Số người trực tuyến do Discord cung cấp; không ước lượng hoặc hiển thị khi lỗi.
-async function updateDiscordPresence() {
-  if (!/^\d+$/.test(CAU_HINH.DISCORD_GUILD_ID)) return;
-  try {
-    const response = await fetch(
-      `https://discord.com/api/guilds/${CAU_HINH.DISCORD_GUILD_ID}/widget.json`,
-      { signal: AbortSignal.timeout(6000) },
-    );
-    if (!response.ok) return;
-    const data = await response.json();
-    if (!Number.isInteger(data.presence_count) || data.presence_count < 0)
-      return;
-    const presence = document.getElementById("discord-presence");
-    presence.textContent = `${data.presence_count.toLocaleString("vi-VN")} người đang trực tuyến trên Discord`;
-    presence.hidden = false;
-  } catch {
-    /* Widget chưa bật hoặc lỗi mạng: giữ dòng thống kê ẩn. */
-  }
-}
-updateDiscordPresence();
 
 document.querySelectorAll("[data-social]").forEach((link) => {
   const value = CAU_HINH.MANG_XA_HOI[link.dataset.social];
