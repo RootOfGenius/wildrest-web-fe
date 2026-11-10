@@ -17,11 +17,15 @@ with sync_playwright() as p:
         page.goto('http://localhost:8080', wait_until='networkidle')
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), width
         assert page.locator('#hero-title img').get_attribute('alt') == 'WildRest.vn — Server Minecraft sinh tồn Việt Nam'
-        assert page.locator('#launch-status').text_content() == 'Sắp ra mắt'
-        assert page.locator('#hero-ip').get_attribute('href') == '#tinh-nang'
+        assert page.locator('#launch-status').text_content() == 'Đang mở thử nghiệm'
+        assert page.locator('#hero-ip').get_attribute('href') == '#cach-vao'
         assert page.locator('#countdown').is_hidden()
-        assert page.locator('[data-copy]:visible').count() == 0
-        assert page.locator('[data-ip="java"]').inner_text() == 'Sẽ công bố khi mở cửa'
+        assert page.locator('[data-copy]:visible').count() == 3
+        assert page.locator('[data-ip="java"]').inner_text() == 'play.wildrest.vn'
+        assert page.locator('[data-ip="bedrock"]').inner_text() == 'play.wildrest.vn'
+        assert page.locator('#bedrock-port').inner_text() == '19132'
+        assert page.locator('.edition [data-version="java"]').inner_text() == '1.21.4–26.3'
+        assert page.locator('#cach-vao [data-version="bedrock"]').inner_text() == '26.40 đến 26.60'
         if width < 880:
             page.locator('.menu-toggle').click()
             assert page.locator('#menu').is_visible()
@@ -32,15 +36,19 @@ with sync_playwright() as p:
         page.locator('summary').first.click()
         page.screenshot(path=str(OUT / f'{width}.png'))
     source = (ROOT / 'script.js').read_text(encoding='utf-8')
+    page.set_viewport_size({'width': 390, 'height': 844})
+    page.context.grant_permissions(['clipboard-read', 'clipboard-write'])
+    for edition, value in [('java', 'play.wildrest.vn'), ('bedrock', 'play.wildrest.vn'), ('port', '19132')]:
+        page.locator(f'[data-copy="{edition}"]').click()
+        assert page.evaluate('navigator.clipboard.readText()') == value
     for mode, date in [('future', '2099-12-20T19:00:00+07:00'), ('past', '2020-12-20T19:00:00+07:00'), ('invalid', 'invalid')]:
-        changed = source.replace('HIEN_IP: false', 'HIEN_IP: true').replace('NGAY_MO: null', f'NGAY_MO: "{date}"')
+        changed = source.replace('NGAY_MO: null', f'NGAY_MO: "{date}"')
         page.route('**/script.js', lambda route: route.fulfill(body=changed, content_type='text/javascript'))
         page.goto('http://localhost:8080', wait_until='networkidle')
         assert page.locator('[data-ip="java"]').inner_text() == 'play.wildrest.vn'
         assert page.locator('[data-copy]:visible').count() == 3
         if mode == 'future':
             assert page.locator('#countdown').is_visible()
-            page.context.grant_permissions(['clipboard-read', 'clipboard-write'])
             page.locator('#hero-ip').click()
             assert page.evaluate('navigator.clipboard.readText()') == 'play.wildrest.vn'
             assert page.locator('#toast').inner_text().startswith('✦\nĐã copy!')

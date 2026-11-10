@@ -2,11 +2,48 @@ const CAU_HINH = {
   IP_JAVA: "play.wildrest.vn",
   IP_BEDROCK: "play.wildrest.vn",
   CONG_BEDROCK: 19132,
-  HIEN_IP: false,
+  PHIEN_BAN_JAVA: "1.21.4 – 26.3",
+  PHIEN_BAN_BEDROCK: "26.40 – 26.60",
+  HIEN_IP: true,
   NGAY_MO: null, // Ví dụ: '2026-12-20T19:00:00+07:00'
   DISCORD: "https://discord.wildrest.vn",
   MANG_XA_HOI: { tiktok: "", facebook: "", youtube: "" },
 };
+
+const versions = {
+  java: CAU_HINH.PHIEN_BAN_JAVA,
+  bedrock: CAU_HINH.PHIEN_BAN_BEDROCK,
+};
+document.querySelectorAll("[data-version]").forEach((element) => {
+  const version = versions[element.dataset.version];
+  element.textContent = version.replace(
+    /\s*–\s*/g,
+    element.hasAttribute("data-version-range") ? " đến " : "–",
+  );
+});
+const javaLabel = document.querySelector("[data-version=java]").textContent;
+document
+  .querySelectorAll('meta[name="description"], meta[property="og:description"]')
+  .forEach((meta) => {
+    meta.content = meta.content.replace(
+      /Java \S+ và Minecraft PE/,
+      `Java ${javaLabel} và Minecraft PE`,
+    );
+  });
+
+const versionFAQ = document.getElementById("faq-version");
+const schema = document.querySelector('script[type="application/ld+json"]');
+const structuredData = JSON.parse(schema.textContent);
+const versionQuestion = structuredData["@graph"]
+  .find((entry) => entry["@type"] === "FAQPage")
+  .mainEntity.find(
+    (entry) => entry.name === versionFAQ.querySelector("summary").textContent,
+  );
+versionQuestion.acceptedAnswer.text = versionFAQ
+  .querySelector("p")
+  .textContent.trim()
+  .replace(/\s+/g, " ");
+schema.textContent = JSON.stringify(structuredData);
 
 const ANH_MAY_CHU = [
   {
