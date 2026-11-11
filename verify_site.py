@@ -10,6 +10,8 @@ with sync_playwright() as p:
     page = browser.new_page()
     errors = []
     missing = []
+    status_api = 'https://api.mcstatus.io/v2/status/java/*'
+    page.route(status_api, lambda route: route.fulfill(json={'online': True, 'players': {'online': 2}}))
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.on('response', lambda response: missing.append(response.url) if response.status == 404 and response.url.startswith('http://localhost:8080') else None)
     for width in [360, 390, 768, 1024, 1440]:
@@ -91,7 +93,7 @@ with sync_playwright() as p:
         answer = ' '.join(detail.locator('p').text_content().split())
         assert question['acceptedAnswer']['text'] == answer, (question, answer)
     assert page.locator('meta[property="og:image"]').get_attribute('content').endswith('/og-v2.jpg')
-    assert page.locator('img.feature-icon').count() == 12
+    assert page.locator('img.feature-icon').count() == 13
     for icon in page.locator('img.feature-icon').all():
         assert (ROOT / icon.get_attribute('src')).is_file()
     photos = page.evaluate('ANH_MAY_CHU')
@@ -102,6 +104,17 @@ with sync_playwright() as p:
         assert original.is_file()
         assert original.with_name(original.stem + '-640.webp').is_file()
     assert page.locator('#update-list article').count() == len(page.evaluate('CAP_NHAT'))
+    assert page.locator('#server-status').is_visible()
+    assert page.locator('#server-status strong').inner_text() == '2'
+    assert page.locator('a[data-vote]').count() == 2
+    for link in page.locator('a[data-vote]').all():
+        assert link.get_attribute('href') == 'https://minecraft-mp.com/server/366670/vote/'
+    no_js = browser.new_page(java_script_enabled=False)
+    no_js.goto('http://localhost:8080')
+    assert no_js.locator('[data-ip]').all_text_contents() == ['play.wildrest.vn'] * 2
+    assert no_js.locator('#bedrock-port').inner_text() == '19132'
+    assert no_js.locator('#update-list time').evaluate_all('(dates) => dates.map(date => date.dateTime)') == ['2026-11-12', '2026-11-11', '2026-11-10']
+    no_js.close()
     page.set_viewport_size({'width': 390, 'height': 844})
     first_photo = page.locator('#gallery-grid button').first
     first_photo.press('Enter')
@@ -117,7 +130,15 @@ with sync_playwright() as p:
     assert first_photo.evaluate('(button) => button === document.activeElement')
     assert page.locator('[data-social]:visible').count() == 0
     page.route('https://mc-heads.net/**', lambda route: route.abort())
+    page.unroute(status_api)
+    page.route(status_api, lambda route: route.fulfill(json={'online': False}))
+    hidden_ip = source.replace('HIEN_IP: true', 'HIEN_IP: false')
+    page.route('**/script.js', lambda route: route.fulfill(body=hidden_ip, content_type='text/javascript'))
     page.goto('http://localhost:8080', wait_until='networkidle')
+    assert page.locator('#server-status').is_hidden()
+    assert page.locator('[data-ip]').all_text_contents() == ['Sẽ công bố khi mở cửa'] * 2
+    assert page.locator('#bedrock-port').inner_text() == 'Sẽ công bố khi mở cửa'
+    assert page.locator('[data-copy]:visible').count() == 0
     page.locator('#owner').scroll_into_view_if_needed()
     page.wait_for_function('document.querySelector(".owner-avatar").hidden')
     assert page.request.get('http://localhost:8080/.well-known/discord').body() == b'dh=dd86fffe4e37f78146784d67dde8d157b343b378\n'

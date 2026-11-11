@@ -296,6 +296,23 @@ button {
 .edition-dot {
   margin: 0 6px;
 }
+.server-status-slot {
+  min-height: 38px;
+  padding-top: 8px;
+}
+.server-status {
+  display: table;
+  margin: 0 auto;
+  padding: 4px 12px;
+  background: #fff8ee;
+  color: #285121;
+  font-size: 12px;
+}
+.server-status-dot {
+  margin-right: 4px;
+  color: #287534;
+  animation: pulse 2s ease-in-out infinite;
+}
 .scroll-hint {
   position: absolute;
   bottom: 61px;
@@ -687,6 +704,15 @@ code {
   justify-content: space-between;
   align-items: center;
   gap: 8px;
+}
+.vote-box {
+  margin-top: 24px;
+  text-align: center;
+}
+.vote-box p {
+  margin: 12px 0 0;
+  color: #fff6e6;
+  font-size: 14px;
 }
 .pack-note {
   font-size: 16px;

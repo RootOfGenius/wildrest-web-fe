@@ -7,6 +7,8 @@ const CAU_HINH = {
   HIEN_IP: true,
   NGAY_MO: null, // Ví dụ: '2026-12-20T19:00:00+07:00'
   DISCORD: "https://discord.wildrest.vn",
+  VOTE: "https://minecraft-mp.com/server/366670/vote/",
+  IP_TRANG_THAI: "15.235.180.33",
   MANG_XA_HOI: { tiktok: "", facebook: "", youtube: "" },
 };
 
@@ -26,8 +28,8 @@ document
   .querySelectorAll('meta[name="description"], meta[property="og:description"]')
   .forEach((meta) => {
     meta.content = meta.content.replace(
-      /Java \S+ và Minecraft PE/,
-      `Java ${javaLabel} và Minecraft PE`,
+      /Java \S+ và PE/,
+      `Java ${javaLabel} và PE`,
     );
   });
 
@@ -92,28 +94,29 @@ const ANH_MAY_CHU = [
 
 const CAP_NHAT = [
   {
-    ngay: "2026-11-09",
-    tieuDe: "Dungeon & bộ Cơ Giáp Pha Lê",
+    ngay: "2026-11-12",
+    tieuDe: "Phiếu Online, Phiếu AFK & điểm danh",
     noiDung: [
-      "Đánh trùm cuối Dungeon để săn Lõi Pha Lê.",
-      "Bộ Cơ Giáp Pha Lê có cánh sau lưng. Kiếm phóng bánh xe xoay và gọi rồng băng.",
-      "Thêm dụng cụ bậc Pha Lê.",
+      "Chơi mỗi 30 phút nhận 1 Phiếu Online, treo máy ở khu AFK mỗi giờ nhận 1 Phiếu AFK.",
+      "Đổi phiếu lấy 2 bộ giáp mới Thiên Hành và Tĩnh Tâm ở khu đổi đồ.",
+      "Điểm danh 7 ngày và Giờ Vàng 20:00–22:00 mỗi ngày.",
     ],
   },
   {
-    ngay: "2026-11-09",
-    tieuDe: "Nông trại theo mùa & nội thất",
+    ngay: "2026-11-11",
+    tieuDe: "Xe, rank & hơn 300 khối xây dựng",
     noiDung: [
-      "Trồng 10 loại cây theo mùa và giao đơn hàng cho Thương Lái.",
-      "Hơn 140 món nội thất để trang trí, có ghế và sofa ngồi được.",
+      "Mua siêu xe bằng Xu, nâng cấp tiết kiệm xăng và chống va chạm ở garage.",
+      "Camera tự do /freecam cho rank Lord trở lên, Duke và King dịch chuyển tức thì.",
+      "Shop thêm hơn 300 khối xây dựng: gỗ, đá, đồng, nội thất.",
     ],
   },
   {
-    ngay: "2026-11-09",
-    tieuDe: "Câu cá & cân bằng",
+    ngay: "2026-11-10",
+    tieuDe: "Máy chủ mới ở Singapore",
     noiDung: [
-      "Ghé Lão Ngư để khám phá cần câu 4 bậc.",
-      "Kiếm mọi bậc mạnh hơn. Dungeon xuất hiện nhiều quái hơn.",
+      "Chuyển sang máy chủ mạnh hơn đặt tại Singapore, ping từ Việt Nam khoảng 40–60ms.",
+      "Vote cho server trên minecraft-mp để nhận chìa rương Vote và XP.",
     ],
   },
 ];
@@ -138,7 +141,33 @@ if ("IntersectionObserver" in window) {
 document.querySelectorAll("[data-discord]").forEach((link) => {
   link.href = CAU_HINH.DISCORD;
 });
+document.querySelectorAll("[data-vote]").forEach((link) => {
+  link.href = CAU_HINH.VOTE;
+});
 document.getElementById("year").textContent = new Date().getFullYear();
+
+window.addEventListener(
+  "load",
+  async () => {
+    try {
+      const response = await fetch(
+        `https://api.mcstatus.io/v2/status/java/${CAU_HINH.IP_TRANG_THAI}`,
+        { priority: "low", signal: AbortSignal.timeout(4000) },
+      );
+      if (!response.ok) return;
+      const { online, players } = await response.json();
+      if (!online || !Number.isInteger(players?.online) || players.online < 0)
+        return;
+      const status = document.getElementById("server-status");
+      status.querySelector("strong").textContent =
+        players.online.toLocaleString("vi-VN");
+      status.hidden = false;
+    } catch {
+      // Khi API không trả kết quả, khối trạng thái vẫn ẩn.
+    }
+  },
+  { once: true },
+);
 
 const timeline = document.querySelector("#update-list");
 if (CAP_NHAT.length) {
@@ -343,6 +372,10 @@ if (CAU_HINH.HIEN_IP) {
   heroIP.addEventListener("click", (event) => {
     event.preventDefault();
     copyText(CAU_HINH.IP_JAVA);
+  });
+} else {
+  document.querySelectorAll("[data-ip], #bedrock-port").forEach((element) => {
+    element.textContent = "Sẽ công bố khi mở cửa";
   });
 }
 

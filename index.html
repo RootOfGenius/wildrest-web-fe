@@ -9,7 +9,7 @@
       WildRest.vn · Server Minecraft sinh tồn Việt · Đang mở thử nghiệm
     </title>
     <meta
-      content="Server Minecraft sinh tồn Việt Nam WildRest.vn: Java 1.21.4–26.3 và Minecraft PE, Việt hoá toàn bộ, nông trại theo mùa, dungeon cướp biển, trang bị tự rèn, nội thất, xe hơi. Đang mở thử nghiệm — tham gia Discord để nhận thông báo."
+      content="Server Minecraft sinh tồn Việt Nam WildRest.vn: Java 1.21.4–26.3 và PE, Việt hoá toàn bộ, nông trại, dungeon, xe hơi, chơi mỗi ngày có quà. Đang mở thử nghiệm."
       name="description"
     />
     <link href="https://wildrest.vn/" rel="canonical" />
@@ -18,7 +18,7 @@
     <meta content="https://wildrest.vn/" property="og:url" />
     <meta content="WildRest.vn · Đang mở thử nghiệm" property="og:title" />
     <meta
-      content="Server Minecraft sinh tồn Việt Nam WildRest.vn: Java 1.21.4–26.3 và Minecraft PE, Việt hoá toàn bộ, nông trại theo mùa, dungeon cướp biển, trang bị tự rèn, nội thất, xe hơi. Đang mở thử nghiệm — tham gia Discord để nhận thông báo."
+      content="Server Minecraft sinh tồn Việt Nam WildRest.vn: Java 1.21.4–26.3 và PE, Việt hoá toàn bộ, nông trại, dungeon, xe hơi, chơi mỗi ngày có quà. Đang mở thử nghiệm."
       property="og:description"
     />
     <meta content="https://wildrest.vn/assets/og-v2.jpg" property="og:image" />
@@ -112,7 +112,7 @@
                 "name": "Mới vào nên làm gì?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Chọn một hướng cày (nông sản, đánh quái, câu cá), làm nông trại kiếm tiền, rồi đổi đồ ở dãy NPC cạnh sảnh. Gõ /menu để xem mọi tính năng."
+                  "text": "Chọn một hướng cày (nông sản, đánh quái, câu cá), làm nông trại kiếm tiền, rồi đổi đồ ở dãy NPC cạnh sảnh. Gõ /menu để xem mọi tính năng và gõ /diemdanh mỗi ngày để nhận quà."
                 }
               },
               {
@@ -161,6 +161,22 @@
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "Có. Bản thử nghiệm sẽ reset world và dữ liệu khi mở chính thức; người báo lỗi trong lúc thử nghiệm được thưởng."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Treo máy có được gì không?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Có. Đứng ở khu AFK cạnh sảnh mỗi giờ nhận 1 Phiếu AFK, đổi lấy bộ giáp Tĩnh Tâm và đồ phụ. Mỗi máy treo tối đa 3 tài khoản."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Máy chủ đặt ở đâu, ping có cao không?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Máy chủ đặt tại Singapore, ping từ Việt Nam thường khoảng 40–60ms."
                 }
               },
               {
@@ -259,6 +275,12 @@
             <span data-version="java">1.21.4–26.3</span>
             <span class="edition-dot">·</span> Có cả trên điện thoại / PE
           </p>
+          <div class="server-status-slot">
+            <p id="server-status" class="server-status" hidden>
+              <span class="server-status-dot" aria-hidden="true">●</span>
+              Đang mở · <strong></strong> người đang chơi
+            </p>
+          </div>
         </div>
         <a class="scroll-hint" href="#tinh-nang"
           >Khám phá miền đất mới <span aria-hidden="true">↓</span></a
@@ -329,7 +351,7 @@
           <article class="feature-card reveal">
             <img
               class="feature-icon"
-              src="assets/icons/nong-trai.png"
+              src="assets/icons/phan-thuong.svg"
               alt=""
               width="128"
               height="128"
@@ -337,6 +359,25 @@
               decoding="async"
             />
             <span class="slot-number" aria-hidden="true">02</span>
+            <h3>Chơi mỗi ngày có quà</h3>
+            <p>
+              Chơi 30 phút nhận Phiếu Online, treo máy nhận Phiếu AFK. Đổi phiếu
+              lấy bộ giáp Thiên Hành, Tĩnh Tâm. Điểm danh 7 ngày và Giờ Vàng mỗi
+              tối.
+            </p>
+            <span class="card-label">ONLINE LÀ CÓ LỜI</span>
+          </article>
+          <article class="feature-card reveal">
+            <img
+              class="feature-icon"
+              src="assets/icons/nong-trai.png"
+              alt=""
+              width="128"
+              height="128"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="slot-number" aria-hidden="true">03</span>
             <h3>Nông trại theo mùa</h3>
             <p>
               10 loại cây từ cà chua, ngô, nho tới sầu riêng. Mỗi mùa một loại
@@ -355,7 +396,7 @@
               loading="lazy"
               decoding="async"
             />
-            <span class="slot-number" aria-hidden="true">03</span>
+            <span class="slot-number" aria-hidden="true">04</span>
             <h3>Trang bị tự rèn</h3>
             <p>
               Ba hướng cày mạnh ngang nhau: nông sản, đánh quái, câu cá. Đổi
@@ -373,7 +414,7 @@
               loading="lazy"
               decoding="async"
             />
-            <span class="slot-number" aria-hidden="true">04</span>
+            <span class="slot-number" aria-hidden="true">05</span>
             <h3>Cường hóa trang bị</h3>
             <p>
               Nâng giáp, vũ khí tới +12 bằng Đá Cường Hóa. Lên bậc vẫn giữ cấp
@@ -391,7 +432,7 @@
               loading="lazy"
               decoding="async"
             />
-            <span class="slot-number" aria-hidden="true">05</span>
+            <span class="slot-number" aria-hidden="true">06</span>
             <h3>Dungeon Cướp Biển</h3>
             <p>
               4 khu, mỗi khu có boss riêng. Gom đủ 4 Mảnh Chìa để gọi trùm cuối
@@ -409,7 +450,7 @@
               loading="lazy"
               decoding="async"
             />
-            <span class="slot-number" aria-hidden="true">06</span>
+            <span class="slot-number" aria-hidden="true">07</span>
             <h3>Boss &amp; Rồng Ender</h3>
             <p>
               Boss Sukuna xuất hiện mỗi ngày, gọi lại Rồng Ender để rèn bộ giáp
@@ -427,7 +468,7 @@
               loading="lazy"
               decoding="async"
             />
-            <span class="slot-number" aria-hidden="true">07</span>
+            <span class="slot-number" aria-hidden="true">08</span>
             <h3>Nông cụ, khoáng cụ &amp; cần câu</h3>
             <p>
               Cuốc từng loại cây, cúp khai khoáng, rìu tiều phu, cần câu nhiều
@@ -445,7 +486,7 @@
               loading="lazy"
               decoding="async"
             />
-            <span class="slot-number" aria-hidden="true">08</span>
+            <span class="slot-number" aria-hidden="true">09</span>
             <h3>Vận May &amp; Năng Lực</h3>
             <p>
               Mỗi cấp kỹ năng tăng Vận May: thu hoạch, đào quặng, chặt gỗ rơi
@@ -463,7 +504,7 @@
               loading="lazy"
               decoding="async"
             />
-            <span class="slot-number" aria-hidden="true">09</span>
+            <span class="slot-number" aria-hidden="true">10</span>
             <h3>Nội thất &amp; trang trí</h3>
             <p>
               Hơn 140 món nội thất: sofa, bàn, kệ, đèn chùm, TV, bể cá… Ghế và
@@ -481,11 +522,12 @@
               loading="lazy"
               decoding="async"
             />
-            <span class="slot-number" aria-hidden="true">10</span>
+            <span class="slot-number" aria-hidden="true">11</span>
             <h3>Xe hơi lái dạo</h3>
             <p>
-              Mua xe, đổ xăng, gắn biển số, khoá xe, chia chìa khoá cho bạn bè.
-              Siêu xe trưng bày ngay sảnh chờ.
+              Mua xe bằng tiền trong game hoặc Xu, đổ xăng, gắn biển số, khoá
+              xe, nâng cấp tiết kiệm xăng và chống va chạm. Siêu xe trưng bày
+              ngay sảnh chờ.
             </p>
             <span class="card-label">HÔM NAY ĐI ĐÂU?</span>
           </article>
@@ -499,11 +541,11 @@
               loading="lazy"
               decoding="async"
             />
-            <span class="slot-number" aria-hidden="true">11</span>
+            <span class="slot-number" aria-hidden="true">12</span>
             <h3>Bang hội &amp; giải trí</h3>
             <p>
               Lập bang, quỹ chung, nhiệm vụ tuần, liên minh. Đua ngựa đặt cược,
-              xổ số, Battle Pass theo mùa.
+              xổ số, Battle Pass theo mùa và trò chơi đố vui trong chat.
             </p>
             <span class="card-label">CÓ ĐỒNG ĐỘI, CÓ TẤT CẢ</span>
           </article>
@@ -517,7 +559,7 @@
               loading="lazy"
               decoding="async"
             />
-            <span class="slot-number" aria-hidden="true">12</span>
+            <span class="slot-number" aria-hidden="true">13</span>
             <h3>Điện thoại &amp; máy tính chơi chung</h3>
             <p>
               Minecraft PE / Bedrock vào cùng hội Java. Liên kết tài khoản PE
@@ -599,41 +641,53 @@
         </div>
         <div class="update-list" id="update-list">
           <article class="update-card">
-            <time datetime="2026-11-09">09/11</time>
+            <time datetime="2026-11-12">12/11</time>
             <div>
-              <h3>Dungeon &amp; bộ Cơ Giáp Pha Lê</h3>
+              <h3>Phiếu Online, Phiếu AFK &amp; điểm danh</h3>
               <ul>
-                <li>Đánh trùm cuối Dungeon để săn Lõi Pha Lê.</li>
                 <li>
-                  Bộ Cơ Giáp Pha Lê có cánh sau lưng. Kiếm phóng bánh xe xoay và
-                  gọi rồng băng.
+                  Chơi mỗi 30 phút nhận 1 Phiếu Online, treo máy ở khu AFK mỗi
+                  giờ nhận 1 Phiếu AFK.
                 </li>
-                <li>Thêm dụng cụ bậc Pha Lê.</li>
+                <li>
+                  Đổi phiếu lấy 2 bộ giáp mới Thiên Hành và Tĩnh Tâm ở khu đổi
+                  đồ.
+                </li>
+                <li>Điểm danh 7 ngày và Giờ Vàng 20:00–22:00 mỗi ngày.</li>
               </ul>
             </div>
           </article>
           <article class="update-card">
-            <time datetime="2026-11-09">09/11</time>
+            <time datetime="2026-11-11">11/11</time>
             <div>
-              <h3>Nông trại theo mùa &amp; nội thất</h3>
+              <h3>Xe, rank &amp; hơn 300 khối xây dựng</h3>
               <ul>
                 <li>
-                  Trồng 10 loại cây theo mùa và giao đơn hàng cho Thương Lái.
+                  Mua siêu xe bằng Xu, nâng cấp tiết kiệm xăng và chống va chạm
+                  ở garage.
                 </li>
                 <li>
-                  Hơn 140 món nội thất để trang trí, có ghế và sofa ngồi được.
+                  Camera tự do /freecam cho rank Lord trở lên, Duke và King dịch
+                  chuyển tức thì.
+                </li>
+                <li>
+                  Shop thêm hơn 300 khối xây dựng: gỗ, đá, đồng, nội thất.
                 </li>
               </ul>
             </div>
           </article>
           <article class="update-card">
-            <time datetime="2026-11-09">09/11</time>
+            <time datetime="2026-11-10">10/11</time>
             <div>
-              <h3>Câu cá &amp; cân bằng</h3>
+              <h3>Máy chủ mới ở Singapore</h3>
               <ul>
-                <li>Ghé Lão Ngư để khám phá cần câu 4 bậc.</li>
                 <li>
-                  Kiếm mọi bậc mạnh hơn. Dungeon xuất hiện nhiều quái hơn.
+                  Chuyển sang máy chủ mạnh hơn đặt tại Singapore, ping từ Việt
+                  Nam khoảng 40–60ms.
+                </li>
+                <li>
+                  Vote cho server trên minecraft-mp để nhận chìa rương Vote và
+                  XP.
                 </li>
               </ul>
             </div>
@@ -684,7 +738,7 @@
             <div class="ip-box">
               <div>
                 <span>ĐỊA CHỈ MÁY CHỦ</span
-                ><strong data-ip="java">Sẽ công bố khi mở cửa</strong>
+                ><strong data-ip="java">play.wildrest.vn</strong>
               </div>
               <button
                 aria-label="Sao chép địa chỉ Java"
@@ -717,7 +771,7 @@
             <div class="ip-box">
               <div>
                 <span>ĐỊA CHỈ MÁY CHỦ</span
-                ><strong data-ip="bedrock">Sẽ công bố khi mở cửa</strong>
+                ><strong data-ip="bedrock">play.wildrest.vn</strong>
               </div>
               <button
                 aria-label="Sao chép địa chỉ Bedrock"
@@ -729,9 +783,7 @@
               </button>
             </div>
             <div class="port-row">
-              <span
-                >Cổng kết nối:
-                <strong id="bedrock-port">Sẽ công bố khi mở cửa</strong></span
+              <span>Cổng kết nối: <strong id="bedrock-port">19132</strong></span
               ><button
                 aria-label="Sao chép cổng Bedrock"
                 class="copy-button"
@@ -742,6 +794,17 @@
               </button>
             </div>
           </article>
+        </div>
+        <div class="vote-box">
+          <a
+            data-vote
+            href="https://minecraft-mp.com/server/366670/vote/"
+            target="_blank"
+            rel="noopener"
+            class="button button-secondary"
+            >Vote cho WildRest ↗</a
+          >
+          <p>Mỗi lượt vote nhận chìa rương Vote và XP trong game.</p>
         </div>
         <p class="pack-note">
           Giai đoạn thử nghiệm — dữ liệu sẽ được reset khi mở chính thức. Báo
@@ -844,7 +907,8 @@
             <p>
               Chọn một hướng cày (nông sản, đánh quái, câu cá), làm nông trại
               kiếm tiền, rồi đổi đồ ở dãy NPC cạnh sảnh. Gõ
-              <code>/menu</code> để xem mọi tính năng.
+              <code>/menu</code> để xem mọi tính năng và gõ
+              <code>/diemdanh</code> mỗi ngày để nhận quà.
             </p>
           </details>
           <details>
@@ -902,6 +966,19 @@
             </p>
           </details>
           <details>
+            <summary>Treo máy có được gì không?</summary>
+            <p>
+              Có. Đứng ở khu AFK cạnh sảnh mỗi giờ nhận 1 Phiếu AFK, đổi lấy bộ
+              giáp Tĩnh Tâm và đồ phụ. Mỗi máy treo tối đa 3 tài khoản.
+            </p>
+          </details>
+          <details>
+            <summary>Máy chủ đặt ở đâu, ping có cao không?</summary>
+            <p>
+              Máy chủ đặt tại Singapore, ping từ Việt Nam thường khoảng 40–60ms.
+            </p>
+          </details>
+          <details>
             <summary>Báo lỗi ở đâu?</summary>
             <p>
               Gửi lỗi vào kênh báo lỗi trên
@@ -953,7 +1030,15 @@
           rel="noopener"
           target="_blank"
           >Discord ↗</a
-        ><a data-social="tiktok" hidden="">TikTok ↗</a
+        >
+        <a
+          data-vote
+          href="https://minecraft-mp.com/server/366670/vote/"
+          target="_blank"
+          rel="noopener"
+          >Vote cho WildRest ↗</a
+        >
+        <a data-social="tiktok" hidden="">TikTok ↗</a
         ><a data-social="facebook" hidden="">Facebook ↗</a
         ><a data-social="youtube" hidden="">YouTube ↗</a>
       </nav>
