@@ -90,6 +90,48 @@ const ANH_MAY_CHU = [
     alt: "Người chơi đứng cạnh xe trắng đỗ bên hiên nhà",
     chuThich: "Dừng xe trước hiên nhà",
   },
+  {
+    src: "assets/gallery/anh-07.webp",
+    width: 1871,
+    height: 966,
+    alt: "Toàn cảnh sảnh WildRest lúc hoàng hôn nhìn từ trên cao",
+    chuThich: "Hoàng hôn phủ kín sảnh",
+  },
+  {
+    src: "assets/gallery/anh-08.webp",
+    width: 1865,
+    height: 965,
+    alt: "Con đường lát đá giữa hàng dừa dẫn tới tòa tháp cao",
+    chuThich: "Lối dừa dẫn về tháp sảnh",
+  },
+  {
+    src: "assets/gallery/anh-09.webp",
+    width: 1803,
+    height: 939,
+    alt: "Khu rương phần thưởng với các hòm phát sáng bên hiên gỗ",
+    chuThich: "Ghé khu mở rương quà",
+  },
+  {
+    src: "assets/gallery/anh-10.webp",
+    width: 1798,
+    height: 975,
+    alt: "Phòng khách tông hồng với sofa, thảm và đèn trần",
+    chuThich: "Phòng khách xinh xắn tự tay bày",
+  },
+  {
+    src: "assets/gallery/anh-11.webp",
+    width: 1581,
+    height: 910,
+    alt: "Biệt thự màu hồng có đài phun nước giữa đồng cỏ",
+    chuThich: "Biệt thự hồng giữa đồng cỏ",
+  },
+  {
+    src: "assets/gallery/anh-12.webp",
+    width: 1783,
+    height: 926,
+    alt: "Ngôi nhà gỗ kiểu châu Âu dưới dòng chữ play.wildrest.vn trên trời",
+    chuThich: "Ngôi nhà gỗ dưới bầu trời WildRest",
+  },
 ];
 
 const CAP_NHAT = [
