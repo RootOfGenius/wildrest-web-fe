@@ -3,7 +3,7 @@ const CAU_HINH = {
   IP_BEDROCK: "play.wildrest.vn",
   CONG_BEDROCK: 19132,
   PHIEN_BAN_JAVA: "1.21.4 – 26.3",
-  PHIEN_BAN_BEDROCK: "26.40 – 26.60",
+  PHIEN_BAN_BEDROCK: "26.40 – 26.63",
   HIEN_IP: true,
   DISCORD: "https://discord.wildrest.vn",
   VOTE: "https://minecraft-mp.com/server/366670/vote/",

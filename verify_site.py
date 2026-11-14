@@ -26,7 +26,8 @@ with sync_playwright() as p:
         assert page.locator('[data-ip="bedrock"]').inner_text() == 'play.wildrest.vn'
         assert page.locator('#bedrock-port').inner_text() == '19132'
         assert page.locator('.edition [data-version="java"]').inner_text() == '1.21.4–26.3'
-        assert page.locator('#cach-vao [data-version="bedrock"]').inner_text() == '26.40 đến 26.60'
+        assert page.locator('.version[data-version="bedrock"]').inner_text() == '26.40–26.63'
+        assert page.locator('#cach-vao strong[data-version="bedrock"]').inner_text() == '26.40 đến 26.63'
         if width < 880:
             page.locator('.menu-toggle').click()
             assert page.locator('#menu').is_visible()
