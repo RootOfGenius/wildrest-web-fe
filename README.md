@@ -4,7 +4,7 @@ Trang giới thiệu server Minecraft sinh tồn WildRest.vn, dùng HTML, CSS v�
 
 - Chạy thử: `python -m http.server 8080` rồi mở `http://localhost:8080`.
 - Nội dung nằm trong `index.html`, giao diện trong `style.css`.
-- IP, ngày mở cửa, Discord và các liên kết mạng xã hội được cấu hình ở đầu `script.js`.
+- IP, Discord và các liên kết mạng xã hội được cấu hình ở đầu `script.js`.
 - Ảnh tối ưu và font được lưu trong `assets/`.
 
 ## Thêm ảnh và tin cập nhật

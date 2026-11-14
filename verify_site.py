@@ -19,9 +19,8 @@ with sync_playwright() as p:
         page.goto('http://localhost:8080', wait_until='networkidle')
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), width
         assert page.locator('#hero-title img').get_attribute('alt') == 'WildRest.vn — Server Minecraft sinh tồn Việt Nam'
-        assert page.locator('#launch-status').text_content() == 'Đang mở thử nghiệm'
-        assert page.locator('#hero-ip').get_attribute('href') == '#cach-vao'
-        assert page.locator('#countdown').is_hidden()
+        assert page.locator('.hero .badge').inner_text() == 'ĐÃ MỞ CỬA · 15/11/2026'
+        assert page.get_by_role('link', name='Cách vào server').get_attribute('href') == '#cach-vao'
         assert page.locator('[data-copy]:visible').count() == 3
         assert page.locator('[data-ip="java"]').inner_text() == 'play.wildrest.vn'
         assert page.locator('[data-ip="bedrock"]').inner_text() == 'play.wildrest.vn'
@@ -43,26 +42,9 @@ with sync_playwright() as p:
     for edition, value in [('java', 'play.wildrest.vn'), ('bedrock', 'play.wildrest.vn'), ('port', '19132')]:
         page.locator(f'[data-copy="{edition}"]').click()
         assert page.evaluate('navigator.clipboard.readText()') == value
-    for mode, date in [('future', '2099-12-20T19:00:00+07:00'), ('past', '2020-12-20T19:00:00+07:00'), ('invalid', 'invalid')]:
-        changed = source.replace('NGAY_MO: null', f'NGAY_MO: "{date}"')
-        page.route('**/script.js', lambda route: route.fulfill(body=changed, content_type='text/javascript'))
-        page.goto('http://localhost:8080', wait_until='networkidle')
-        assert page.locator('[data-ip="java"]').inner_text() == 'play.wildrest.vn'
-        assert page.locator('[data-copy]:visible').count() == 3
-        if mode == 'future':
-            assert page.locator('#countdown').is_visible()
-            page.locator('#hero-ip').click()
-            assert page.evaluate('navigator.clipboard.readText()') == 'play.wildrest.vn'
-            assert page.locator('#toast').inner_text().startswith('✦\nĐã copy!')
-            page.evaluate("Object.defineProperty(navigator,'clipboard',{value:undefined,configurable:true})")
-            page.locator('[data-copy="port"]').click()
-            assert page.locator('#toast strong').inner_text() == 'Đã copy!'
-        elif mode == 'past':
-            assert page.locator('#launch-status').text_content() == 'Đã mở cửa! Vào chơi ngay'
-            assert page.locator('#hero-title img').count() == 1
-        else:
-            assert page.locator('#countdown').is_hidden()
-        page.unroute('**/script.js')
+    page.evaluate("Object.defineProperty(navigator,'clipboard',{value:undefined,configurable:true})")
+    page.locator('[data-copy="port"]').click()
+    assert page.locator('#toast strong').inner_text() == 'Đã copy!'
     page.emulate_media(reduced_motion='reduce')
     page.goto('http://localhost:8080', wait_until='networkidle')
     assert page.locator('.hero-logo').evaluate('(e) => getComputedStyle(e).animationName') == 'none'
@@ -113,7 +95,7 @@ with sync_playwright() as p:
     no_js.goto('http://localhost:8080')
     assert no_js.locator('[data-ip]').all_text_contents() == ['play.wildrest.vn'] * 2
     assert no_js.locator('#bedrock-port').inner_text() == '19132'
-    assert no_js.locator('#update-list time').evaluate_all('(dates) => dates.map(date => date.dateTime)') == ['2026-11-12', '2026-11-11', '2026-11-10']
+    assert no_js.locator('#update-list time').evaluate_all('(dates) => dates.map(date => date.dateTime)') == ['2026-11-15', '2026-11-14', '2026-11-12']
     no_js.close()
     page.set_viewport_size({'width': 390, 'height': 844})
     first_photo = page.locator('#gallery-grid button').first
@@ -136,8 +118,8 @@ with sync_playwright() as p:
     page.route('**/script.js', lambda route: route.fulfill(body=hidden_ip, content_type='text/javascript'))
     page.goto('http://localhost:8080', wait_until='networkidle')
     assert page.locator('#server-status').is_hidden()
-    assert page.locator('[data-ip]').all_text_contents() == ['Sẽ công bố khi mở cửa'] * 2
-    assert page.locator('#bedrock-port').inner_text() == 'Sẽ công bố khi mở cửa'
+    assert page.locator('[data-ip]').all_text_contents() == ['Địa chỉ đang được cập nhật'] * 2
+    assert page.locator('#bedrock-port').inner_text() == 'Địa chỉ đang được cập nhật'
     assert page.locator('[data-copy]:visible').count() == 0
     page.locator('#owner').scroll_into_view_if_needed()
     page.wait_for_function('document.querySelector(".owner-avatar").hidden')
@@ -149,4 +131,4 @@ with sync_playwright() as p:
     assert not errors, errors
     assert not missing, missing
     browser.close()
-print('PASS: 5 viewports, menu, FAQ, IP, clipboard + fallback, countdown, reduced motion, 404; no page errors.')
+print('PASS: 5 viewports, menu, FAQ, IP, clipboard + fallback, reduced motion, 404; no page errors.')

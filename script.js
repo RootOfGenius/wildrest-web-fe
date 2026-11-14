@@ -5,7 +5,6 @@ const CAU_HINH = {
   PHIEN_BAN_JAVA: "1.21.4 – 26.3",
   PHIEN_BAN_BEDROCK: "26.40 – 26.60",
   HIEN_IP: true,
-  NGAY_MO: null, // Ví dụ: '2026-12-20T19:00:00+07:00'
   DISCORD: "https://discord.wildrest.vn",
   VOTE: "https://minecraft-mp.com/server/366670/vote/",
   IP_TRANG_THAI: "15.235.180.33",
@@ -23,16 +22,6 @@ document.querySelectorAll("[data-version]").forEach((element) => {
     element.hasAttribute("data-version-range") ? " đến " : "–",
   );
 });
-const javaLabel = document.querySelector("[data-version=java]").textContent;
-document
-  .querySelectorAll('meta[name="description"], meta[property="og:description"]')
-  .forEach((meta) => {
-    meta.content = meta.content.replace(
-      /Java \S+ và PE/,
-      `Java ${javaLabel} và PE`,
-    );
-  });
-
 const versionFAQ = document.getElementById("faq-version");
 const schema = document.querySelector('script[type="application/ld+json"]');
 const structuredData = JSON.parse(schema.textContent);
@@ -136,29 +125,28 @@ const ANH_MAY_CHU = [
 
 const CAP_NHAT = [
   {
+    ngay: "2026-11-15",
+    tieuDe: "WildRest.vn chính thức mở cửa!",
+    noiDung: [
+      "Toàn bộ tài khoản, tiền, đồ và nhà thời thử nghiệm đã được làm mới, mọi người đăng ký lại bằng /dk.",
+      "Thế giới mới hoàn toàn với địa hình Terralith, rất nhiều biome lạ. Gõ /rtp để ra khám phá.",
+      "The End rộng 10.000 x 10.000, /warp rong tới thẳng đảo rồng.",
+    ],
+  },
+  {
+    ngay: "2026-11-14",
+    tieuDe: "Nội thất gọn nhẹ, đỡ lag",
+    noiDung: [
+      "Nội thất chỉ đặt được trong đất của mình (đất đã claim hoặc được cho quyền xây).",
+      "Nội thất lớn có giới hạn theo khu và theo người để server mượt hơn, xem dòng giới hạn trong menu nội thất.",
+    ],
+  },
+  {
     ngay: "2026-11-12",
     tieuDe: "Phiếu Online, Phiếu AFK & điểm danh",
     noiDung: [
       "Chơi mỗi 30 phút nhận 1 Phiếu Online, treo máy ở khu AFK mỗi giờ nhận 1 Phiếu AFK.",
-      "Đổi phiếu lấy 2 bộ giáp mới Thiên Hành và Tĩnh Tâm ở khu đổi đồ.",
-      "Điểm danh 7 ngày và Giờ Vàng 20:00–22:00 mỗi ngày.",
-    ],
-  },
-  {
-    ngay: "2026-11-11",
-    tieuDe: "Xe, rank & hơn 300 khối xây dựng",
-    noiDung: [
-      "Mua siêu xe bằng Xu, nâng cấp tiết kiệm xăng và chống va chạm ở garage.",
-      "Camera tự do /freecam cho rank Lord trở lên, Duke và King dịch chuyển tức thì.",
-      "Shop thêm hơn 300 khối xây dựng: gỗ, đá, đồng, nội thất.",
-    ],
-  },
-  {
-    ngay: "2026-11-10",
-    tieuDe: "Máy chủ mới ở Singapore",
-    noiDung: [
-      "Chuyển sang máy chủ mạnh hơn đặt tại Singapore, ping từ Việt Nam khoảng 40–60ms.",
-      "Vote cho server trên minecraft-mp để nhận chìa rương Vote và XP.",
+      "Đổi phiếu lấy bộ giáp Thiên Hành và Tĩnh Tâm, điểm danh 7 ngày và Giờ Vàng mỗi tối.",
     ],
   },
 ];
@@ -408,56 +396,10 @@ if (CAU_HINH.HIEN_IP) {
       copyText(values[button.dataset.copy]),
     );
   });
-  const heroIP = document.getElementById("hero-ip");
-  heroIP.textContent = "Copy IP";
-  heroIP.href = "#cach-vao";
-  heroIP.addEventListener("click", (event) => {
-    event.preventDefault();
-    copyText(CAU_HINH.IP_JAVA);
-  });
 } else {
   document.querySelectorAll("[data-ip], #bedrock-port").forEach((element) => {
-    element.textContent = "Sẽ công bố khi mở cửa";
+    element.textContent = "Địa chỉ đang được cập nhật";
   });
-}
-
-if (CAU_HINH.NGAY_MO) {
-  const target = new Date(CAU_HINH.NGAY_MO).getTime();
-  if (Number.isFinite(target)) {
-    const countdown = document.getElementById("countdown");
-    const units = ["ngày", "giờ", "phút", "giây"];
-    countdown.innerHTML = units
-      .map(
-        (unit) =>
-          `<div class="time-block"><strong>00</strong><span>${unit}</span></div>`,
-      )
-      .join("");
-    const digits = countdown.querySelectorAll("strong");
-    function tick() {
-      const remaining = Math.max(0, Math.floor((target - Date.now()) / 1000));
-      if (!remaining) {
-        document.getElementById("launch-status").textContent =
-          "Đã mở cửa! Vào chơi ngay";
-        countdown.hidden = true;
-        return false;
-      }
-      countdown.hidden = false;
-      [
-        Math.floor(remaining / 86400),
-        Math.floor(remaining / 3600) % 24,
-        Math.floor(remaining / 60) % 60,
-        remaining % 60,
-      ].forEach((value, index) => {
-        digits[index].textContent = String(value).padStart(2, "0");
-      });
-      return true;
-    }
-    if (tick()) {
-      const timer = setInterval(() => {
-        if (!tick()) clearInterval(timer);
-      }, 1000);
-    }
-  }
 }
 
 document.querySelectorAll("[data-social]").forEach((link) => {
